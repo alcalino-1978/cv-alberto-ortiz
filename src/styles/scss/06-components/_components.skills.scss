@@ -1,0 +1,11 @@
+/* ==========================================================================
+   #SCROLL-COMPONENTS
+   ========================================================================== */
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    .skills-list__item {
+        padding-right: $spacing-sm;
+        margin-bottom: $spacing-sm;
+    }
+}

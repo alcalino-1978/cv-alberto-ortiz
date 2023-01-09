@@ -1,0 +1,14 @@
+/* ==========================================================================
+   #UNCLASSED LINKS ELEMENTS
+   ========================================================================== */
+
+a {
+  //@include basic-transition(color);
+  /*@include on-event {
+    color: $color-dark;
+  }*/
+
+  color: $primary-color;
+  text-decoration: none;
+  cursor: pointer;
+}

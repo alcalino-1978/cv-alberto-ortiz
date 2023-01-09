@@ -1,0 +1,13 @@
+@function z-index($key) {
+    @return map-get($z-index, $key);
+}
+
+@mixin z-index($key) {
+    z-index: z-index($key);
+}
+
+// Usage
+//.modal {
+//  @include z-index(modal);
+//}
+//https: //jonsuh.com/blog/organizing-z-index-with-sass/

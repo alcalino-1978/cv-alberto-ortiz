@@ -1,0 +1,115 @@
+// ITCSS structure
+// Original post by Harry Roberts https://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528
+// 01. Settings: global variables
+@import "scss/01-settings/_settings.typography.scss";
+@import "scss/01-settings/_settings.aspect-ratio.scss";
+@import "scss/01-settings/_settings.breakpoints.scss";
+@import "scss/01-settings/_settings.button.scss";
+@import "scss/01-settings/_settings.colors.scss";
+@import "scss/01-settings/_settings.fluid-sizing.scss";
+@import "scss/01-settings/_settings.grid-flex.scss";
+@import "scss/01-settings/_settings.images.scss";
+@import "scss/01-settings/_settings.transitions.scss";
+@import "scss/01-settings/_settings.shadows.scss";
+@import "scss/01-settings/_settings.shapes.scss";
+@import "scss/01-settings/_settings.z-index.scss";
+// 02.Tools: mixins and helper functions
+@import "scss/02-tools/_tools.maps-sass.scss";
+@import "scss/02-tools/_tools.aspect-ratio.scss";
+@import "scss/02-tools/_tools.breakpoints.scss";
+@import "scss/02-tools/_tools.border.scss";
+@import "scss/02-tools/_tools.button.scss";
+@import "scss/02-tools/_tools.class-variants.scss";
+@import "scss/02-tools/_tools.clearfix.scss";
+@import "scss/02-tools/_tools.colors.scss";
+@import "scss/02-tools/_tools.fluid-sizing.scss";
+@import "scss/02-tools/_tools.grid-flex.scss";
+@import "scss/02-tools/_tools.generator.scss";
+@import "scss/02-tools/_tools.hidden.scss";
+@import "scss/02-tools/_tools.maths.scss";
+@import "scss/02-tools/_tools.on-event.scss";
+@import "scss/02-tools/_tools.placeholder.scss";
+@import "scss/02-tools/_tools.position.scss";
+@import "scss/02-tools/_tools.shapes.scss";
+@import "scss/02-tools/_tools.transforms.scss"; //  empty
+@import "scss/02-tools/_tools.text.scss";
+@import "scss/02-tools/_tools.tooltip.scss";
+@import "scss/02-tools/_tools.transitions.scss";
+@import "scss/02-tools/_tools.typography.scss";
+@import "scss/02-tools/_tools.z-index.scss";
+// 03. Generic: ground zero styles, reset styles such as normalize.css
+//@import '03-generic/normalize/normalize.scss';
+@import "scss/03-generic/reset/reset.scss";
+@import "scss/03-generic/_generic.box-sizing.scss";
+@import "scss/03-generic/_generic.shared.scss";
+// 04. Elements: a.k.a Base: unclassed html elements, e.g. headings, lists, tables, this is the last layer that styles tag selectors
+@import "scss/04-elements/_elements.html.scss";
+@import "scss/04-elements/_elements.body.scss";
+@import "scss/04-elements/_elements.forms.scss";
+@import "scss/04-elements/_elements.images.scss";
+@import "scss/04-elements/_elements.lists.scss";
+@import "scss/04-elements/_elements.typography.scss";
+@import "scss/04-elements/_elements.text.scss";
+@import "scss/04-elements/_elements.links.scss";
+@import "scss/04-elements/_elements.videos.scss";
+// 05. Objects: no cosmetic design patterns. Class only styles from here onwards. Classes here are loosely named and I start doing OOCSS here (e.g. .button, .list-item, grid systems etc)
+@import "scss/05-objects/_objects.grid-flex.scss";
+@import "scss/05-objects/_objects.tables.scss";
+@import "scss/05-objects/_objects.typography.scss";
+// 06. Components: rich design UI styling. Class names here are more specific. This layer usually has the biggest volume
+@import "scss/06-components/_components.avatar.scss";
+// @import "scss/06-components/_components.breadcrumb.scss";
+// @import "scss/06-components/_components.button.scss";
+// @import "scss/06-components/_components.browser.scss";
+// @import '06-components/_components.alert.scss';
+// @import "scss/06-components/_components.icons.scss";
+// @import "scss/06-components/_components.cards.scss";
+// @import "scss/06-components/_components.contact.scss";
+// @import "scss/06-components/_components.forms.scss";
+// @import "scss/06-components/_components.detail.scss";
+// @import "scss/06-components/_components.dropdowns-accordions.scss";
+// @import "scss/06-components/_components.logo.scss";
+@import "scss/06-components/_components.languages.scss";
+// @import "scss/06-components/_components.lists.scss";
+// @import "scss/06-components/_components.contributed.scss";
+@import "scss/06-components/_components.main-footer.scss";
+@import "scss/06-components/_components.main-header.scss";
+@import "scss/06-components/_components.menu-hamburguer.scss";
+// @import "scss/06-components/_components.maps.scss";
+// @import "scss/06-components/_components.media-images.scss";
+// @import "scss/06-components/_components.menus.scss";
+// @import "scss/06-components/_components.modal.scss"; //Por desarrollar
+// @import "scss/06-components/_components.notifications.scss";
+// @import "scss/06-components/_components.tabs.scss";
+// @import "scss/06-components/_components.search-box.scss";
+// @import "scss/06-components/_components.tooltips.scss";
+// @import "scss/06-components/_components.states.scss";
+// @import "scss/06-components/_components.scroll.scss";
+@import "scss/06-components/_components.skills.scss";
+// @import "scss/06-components/_components.pagination.scss";
+// @import "scss/06-components/_components.rating.scss";
+// @import "scss/06-components/_components.banners.scss";
+// @import "scss/06-components/_components.videos.scss";
+// @import "scss/06-components/_components.wizard.scss";
+// 07. Themes: thematic styles are placed here (e.g. Custom Sites)
+@import 'scss/07-themes/_themes.cv.scss';
+// scss/99. Trumps: utilities, helpers and overrides. !important is often used.
+// @import "scss/99-utilities/_utilities.aspect-ratio.scss";
+// @import "scss/99-utilities/_utilities.border.scss";
+@import "scss/99-utilities/_utilities.colors.scss";
+// @import "scss/99-utilities/_utilities.fancybox.scss";
+@import "scss/99-utilities/_utilities.fluid-sizing.scss";
+@import "scss/99-utilities/_utilities.flex.scss";
+// @import "scss/99-utilities/_utilities.icons.scss";
+// @import "scss/99-utilities/_utilities.grid-flex.scss";
+// @import "scss/99-utilities/_utilities.hidden.scss";
+// @import "scss/99-utilities/_utilities.overflow.scss";
+// @import "scss/99-utilities/_utilities.opacity.scss";
+// @import "scss/99-utilities/_utilities.position.scss";
+@import "scss/99-utilities/_utilities.text.scss";
+// @import "scss/99-utilities/_utilities.shadows.scss";
+// @import "scss/99-utilities/_utilities.shapes.scss";
+// @import "scss/99-utilities/_utilities.status.scss";
+// @import "scss/99-utilities/_utilities.tiny-slider.scss";
+// @import "scss/99-utilities/_utilities.z-index.scss";
+// @import "scss/99-utilities/_utilities.ie.scss";

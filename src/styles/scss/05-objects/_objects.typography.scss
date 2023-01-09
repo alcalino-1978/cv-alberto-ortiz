@@ -1,0 +1,144 @@
+/* ==========================================================================
+   #TYPOGRAPHY-OBJECTS
+   ========================================================================== */
+
+[class^="title"] {
+    line-height: 1.2;
+    font-weight: 800;
+    color: $black;
+    // display: inline-block;
+    @include poly-fluid-sizing('margin-bottom', 'spacing', 'xs');
+    >strong {
+        color: $primary-color;
+    }
+}
+
+.sub,
+.lead,
+.ante-title {
+    line-height: 1.2;
+    @include poly-fluid-sizing('margin-bottom', 'spacing', 'xs');
+    color: $text-input;
+}
+
+.title {
+    &-3xl {
+        @include poly-fluid-sizing('font-size', 'title', 'xxxl');
+    }
+    &-xxl {
+        @include poly-fluid-sizing('font-size', 'title', 'xxl');
+        + {
+            .sub,
+            .lead {
+                @include poly-fluid-sizing('font-size', 'sub', 'xxl');
+            }
+        }
+    }
+    &-xl {
+        @include poly-fluid-sizing('font-size', 'title', 'xl');
+        + {
+            .sub,
+            .lead {
+                @include poly-fluid-sizing('font-size', 'sub', 'xl');
+            }
+        }
+    }
+    &-lg {
+        @include poly-fluid-sizing('font-size', 'title', 'lg');
+        + {
+            .sub,
+            .lead {
+                @include poly-fluid-sizing('font-size', 'sub', 'lg');
+            }
+        }
+    }
+    &-md {
+        @include poly-fluid-sizing('font-size', 'title', 'md');
+        + {
+            .sub,
+            .lead {
+                @include poly-fluid-sizing('font-size', 'sub', 'md');
+            }
+        }
+    }
+    &-sm {
+        @include poly-fluid-sizing('font-size', 'title', 'sm');
+        + {
+            .sub,
+            .lead {
+                @include poly-fluid-sizing('font-size', 'sub', 'sm');
+            }
+        }
+    }
+    &-xs {
+        @include poly-fluid-sizing('font-size', 'title', 'xs');
+        + {
+            .sub,
+            .lead {
+                @include poly-fluid-sizing('font-size', 'sub', 'xs');
+            }
+        }
+    }
+    &--main-title{
+        color: $primary-color;
+    }
+}
+
+[class^="a-textsize"] {
+    line-height: 1.5;
+    display: inline-block;
+}
+
+.text-size {
+    &-xxl {
+        @include poly-fluid-sizing('font-size', 't', 'xxl');
+    }
+    &-xl {
+        @include poly-fluid-sizing('font-size', 't', 'xl');
+    }
+    &-lg {
+        @include poly-fluid-sizing('font-size', 't', 'lg');
+    }
+    &-md {
+        @include poly-fluid-sizing('font-size', 't', 'md');
+    }
+    &-sm {
+        @include poly-fluid-sizing('font-size', 't', 'sm');
+    }
+    &-xs {
+        @include poly-fluid-sizing('font-size', 't', 'xs');
+    }
+    &-xxs {
+        @include poly-fluid-sizing('font-size', 't', 'xxs');
+    }
+}
+
+.ante-title {
+    color: $primary-color;
+    font-weight: normal;
+    font-size: initial;
+}
+
+.blockquote {
+    color: $text-input;
+    display: flex;
+    font-size: 14px;
+    position: relative;
+    &:before,
+    &:after {
+        color: map-deep-get($map-colours, primary, tint-25);
+        font-size: 21rem;
+        height: 4rem;
+        line-height: 75%;
+    }
+    
+    &:before {
+        content: '“';
+        padding-right: $spacing-unit;
+    }
+    
+    &:after {
+        content: '”';
+        padding-left: $spacing-unit;
+    } 
+}

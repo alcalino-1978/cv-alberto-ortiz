@@ -1,0 +1,344 @@
+/* ==========================================================================
+   #BUTTONS-COMPONENTS
+   ========================================================================== */
+
+.a-button,
+[type="submit"],
+[type="button"] {
+    display: inline-flex;
+    align-items: center;
+    background-color: $primary-color;
+    color: $white;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    cursor: pointer;
+    border: $button-border-width solid transparent;
+    border-radius: $border-radius;
+    position: relative;
+    @include button-size($button-padding, $button-font-size);
+    &:hover,
+    &.-active {
+        background-color: mix(black, $primary-color, 30%);
+    }
+    &:disabled,
+    &.-disabled {
+        background-color: $background-disabled;
+        color: $disabled;
+        pointer-events: none;
+        }
+    //Sizes
+    &.-sizexs {
+        @include button-size($button-padding-xs, $button-font-size-xs);
+    }
+    &.-sizesm {
+        @include button-size($button-padding-sm, $button-font-size-sm);
+    }
+    &.-sizemd {
+        @include button-size($button-padding-md, $button-font-size-md);
+    }
+    &.-sizelg {
+        @include button-size($button-padding-lg, $button-font-size-lg);
+    }
+    &.-sizexl {
+        @include button-size($button-padding-xl, $button-font-size-xl);
+    }
+    &.-typeSecondary {
+        background-color: $white;
+        color: $primary-color;
+        border-color: map-get($map-colours-borders, SecondaryButton);
+        &.-thinBorder{
+            border-width: 1px;
+        }
+        &:hover,
+        &.-active {
+            color: $primary-color;
+            border-color: $primary-color;
+        }
+        &.-disabled {
+            background-color: transparent;
+            color: $disabled;
+            border-color: map-get($map-colours-borders, SecondaryButton);;
+        }       
+    }
+    &.-typeTertiary {
+        background-color: transparent;
+        color: $primary-color;
+        &:hover,
+        &.-active {
+            color: mix(black, $primary-color, 30%);
+        }
+        &.-disabled {
+            color: $disabled;
+        }
+    }
+    &.-typeRounded {
+        border-radius: $border-radius-rounded;
+    }
+    &.-fullWidth {
+        width: 100%;
+        justify-content: center;
+        &.-onlyMobile {
+            @include media-breakpoint-up(lg) {   
+                width: auto;             
+            }
+        }
+        &.-onlyDesktop {
+            @include media-breakpoint-down(lg) {
+                width: auto;             
+            }
+        }
+    }
+    @include media-breakpoint-down(sm) {
+        &.-fullWidthMobile {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+    @include media-breakpoint-up(lg) {
+        &.-fullWidtDesktop {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+    &.-widther {
+        width: 100%;
+        justify-content: center;
+        max-width: $spacing-lg*10;
+        &.-onlyMobile {
+            @include media-breakpoint-up(lg) {   
+                width: auto;             
+                max-width: initial;
+            }
+        }
+        &.-onlyDesktop {
+            @include media-breakpoint-down(lg) {
+                width: auto;             
+                max-width: initial;
+            }
+        }
+    }
+    [class^="a-icon__"] {
+        font-size: $spacing-md;
+        line-height: 0;
+        &.a-icon__arrowRight,
+        &.a-icon__arrowLeft {
+            font-size: $spacing-sides;
+        }
+        &:first-child {
+            margin-right: $spacing-unit;
+        }
+        &:last-child {
+            margin-left: $spacing-unit;
+        }
+    }
+    &.-typeSplitRight,
+    &.-typeSplitLeft {
+        position: relative;
+        &:hover>[class^="a-icon__"] {
+            background-color: mix(black, $primary-color, 30%);
+        }
+        [class^="a-icon__"] {
+            margin: 0;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: -#{$button-border-width};
+            bottom: -#{$button-border-width};
+            width: $spacing-2xl;
+            background-color: mix(black, $primary-color, 10%);
+        }
+        //color by utils for split buttons 
+        &[class^="u-bgColor"] {
+            [class^="a-icon__"] {
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+            &.-bgSeparate {
+                [class^="a-icon__"] {
+                    background-color: inherit;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                }
+            }
+        }
+    }
+    &.-typeSplitRight {
+        padding-right: 6.2rem;
+        [class^="a-icon__"] {
+            right: -#{$button-border-width};
+            border-radius: 0 $border-radius $border-radius 0;
+        }
+    }
+    &.-typeSplitLeft {
+        padding-left: 6.2rem;
+        [class^="a-icon__"] {
+            left: -#{$button-border-width};
+            border-radius: $border-radius 0 0 $border-radius;
+        }
+    }
+    &.-selectAspect {
+        @extend %input;
+        background: $white;
+        min-height: auto;
+        display: flex;
+    }
+    @each $name,
+    $value in $map-button-colours {
+        &.-color#{$name} {
+            background-color: $value;
+            @include set-contrast-color('background-color', 'color', $value);
+            &:hover,
+            &.-active {
+                @if $name == White {
+                    color: mix(black, $primary-color, 30%)
+                } @else {
+                    background-color: mix(black, $value, 30%);
+                }    
+            }
+            &:disabled,
+            &.-disabled {
+                opacity: .5;
+                pointer-events: none;
+            }
+            &.-typeSecondary {
+                background-color: transparent;
+                color: $value;
+                border-color: $value;
+                &:hover,
+                &.-active {
+                    color: $white;
+                    @if $name == White {
+                        background-color: $white;
+                        color: $primary-color;
+                    } @else {
+                        background-color: mix(black, $value, 30%);
+                        border-color: mix(black, $value, 30%);
+                    }
+                }
+                &:disabled,
+                &.-disabled {
+                    opacity: .5;
+                    pointer-events: none;
+                }
+            }
+            &.-typeTertiary {
+                background-color: transparent;
+                color: $value;
+                &:hover,
+                &.-active {
+                    color: mix(black, $value, 30%);
+                }
+                &:disabled,
+                &.-disabled {
+                    opacity: .5;
+                    pointer-events: none;
+                }
+            }
+            &.-typeSplitRight,
+            &.-typeSplitLeft {
+                &:hover>i {
+                    background-color: mix(black, $value, 30%);
+                }
+                >i {
+                    background-color: mix(black, $value, 10%);
+                }
+            }
+        }
+    }
+    &.-typeSecondary.-colorInfo {
+        border-color: #bfddf1;
+    }
+    &.-typeCircle{
+        border-radius: 50%;
+        width: $spacing-2xl;
+        height: $spacing-2xl;
+        padding: 1.4rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &.-next, &.-prev {
+        background: #fff;
+        height: $spacing-unit*6;
+        width: $spacing-unit*6;
+        box-shadow: $box-shadow;
+        border-radius: 50%;
+        justify-content: center;
+        align-items: center;
+        i {
+            color: $primary-color;
+        }
+        &[disabled] {
+            i {
+                color: $text-input;
+            }
+        }
+    }
+}
+
+.m-button-bar, .m-buttonBar {
+    display: flex;
+    &.-alignCenter {
+        justify-content: center;
+    }
+    &.-alignRight {
+        justify-content: flex-end;
+    }
+    .a-button {
+        margin-right: .1rem;
+        &.-typeSecondary {
+            margin-right: -.1rem;
+        }
+        &:not(:last-child) {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        &:not(:first-child) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+    &.-stickyBar{
+        width: 100%;
+        z-index: map-get($map: $map-z-index, $key: sticky);
+    }
+}
+
+.m-button-group, .m-buttonGroup {
+    display: flex;
+    .a-button {
+        flex: 1 1 0;
+        justify-content: center;
+        margin-right: $spacing-unit;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+[class^="m-button"] {
+    &.-typeTabs {
+        margin-bottom: $spacing-sides;
+        box-shadow: 0 0 $spacing-unit 0 rgba(0, 0, 0, 0.5);
+        .a-button {
+            flex: 1 1 0;
+            justify-content: center;
+            background: $white;
+            color:$secondary-color;
+            margin-right: 0rem;
+            border-radius: 0;
+            &:not(:last-child) {
+                border-right:1px solid $tabs;
+            }
+            &:hover,
+            &.-active {
+                background-color: $white;
+                color: $primary-color;               
+            }
+        } 
+
+    }
+}

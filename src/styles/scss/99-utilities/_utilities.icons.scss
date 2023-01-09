@@ -1,0 +1,72 @@
+/* ==========================================================================
+   #UTILITIES FOR ICONS-COMPONENT
+   ========================================================================== */
+
+   %icon-6xl{
+     //font-size: $spacing-2xl + $compensationIcon;
+     font-size: $spacing-6xl!important;
+   }
+   %icon-5xl{
+     //font-size: $spacing-2xl + $compensationIcon;
+     font-size: $spacing-5xl!important;
+   }
+   %icon-4xl{
+     //font-size: $spacing-2xl + $compensationIcon;
+     font-size: $spacing-4xl!important;
+   }
+   %icon-3xl{
+     //font-size: $spacing-2xl + $compensationIcon;
+     font-size: $spacing-3xl!important;
+   }
+   %icon-2xl{
+     //font-size: $spacing-2xl + $compensationIcon;
+     font-size: $spacing-2xl!important;
+   }
+   %icon-xl{
+     font-size: $spacing-xl!important;
+   }
+   %icon-lg{
+     font-size: $spacing-lg!important;
+   }
+   %icon-md{
+     font-size: $spacing-md!important;
+   }
+   %icon-sm{
+     font-size: $spacing-sm!important;
+   }
+   %icon-xs{
+     font-size: $spacing-xs!important;
+   }
+   
+   [class^="icon__"] {
+     &.-size6xl{
+       @extend %icon-6xl;
+     }
+     &.-size5xl{
+       @extend %icon-5xl;
+     }
+     &.-size4xl{
+       @extend %icon-4xl;
+     }
+     &.-size3xl{
+       @extend %icon-3xl;
+     }
+     &.-size2xl{
+       @extend %icon-2xl;
+     }
+     &.-sizexl{
+       @extend %icon-xl;
+     }
+     &.-sizelg{
+       @extend %icon-lg;
+     }
+     &.-sizemd{
+       @extend %icon-md;
+     }
+     &.-sizesm{
+       @extend %icon-sm;
+     }
+     &.-sizexs{
+       @extend %icon-xs;
+     }
+   }

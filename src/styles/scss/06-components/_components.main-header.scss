@@ -1,0 +1,100 @@
+/* ==========================================================================
+   #MAINHEADER-COMPONENT
+   ========================================================================== */
+.main-header {
+    @include media-breakpoint-down(lg) {
+        padding: 0;
+    }
+    >.row {
+        padding: $spacing-sm;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/Web-Developer-Bootcamp-San-Francisco.jpeg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    &__block-main {
+        @include media-breakpoint-up(lg) {
+            order: 2;
+            flex-grow: 2;
+        }
+    }
+    @include media-breakpoint-up(lg) {
+        .avatar {
+            margin-left: $spacing-sm;
+        }
+    }
+}
+
+.main-nav {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba($primary-color, .95);
+    transition: $transition-menu;
+    clip-path: circle(0px at $spacing-lg $spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 1;
+
+    @include media-breakpoint-up(lg) {
+        position: static;
+        height: auto;
+        transition: none;
+        clip-path: none;
+        width: auto;
+        background-color: transparent;
+        margin-top: $spacing-md;
+    }
+
+    &--active {
+        clip-path: circle(150% at 10px 6.5%);
+    }
+
+    &__list {
+        text-align: center;
+        opacity: 0;
+        transition: $transition-menu;
+
+        @include media-breakpoint-up(lg) {
+            opacity: 1;
+            display: flex;
+        }
+
+        &.links-active {
+            opacity: 1;
+        }
+
+        &-item {
+            color: $white;
+            text-shadow: 1px 1px 2px black;
+            font-size: $spacing-lg;
+            font-weight: 300;
+            transition: $transition-menu;
+            cursor: pointer;
+            margin: $spacing-sm 0;
+            @include media-breakpoint-up(lg) {
+                font-weight: 200;
+                font-size: $spacing-sides;
+                padding: 0 $spacing-sm;
+                margin: 0;
+            }
+
+            &:hover {
+                transform: scale(1.05);
+                color: $yellow;
+            }
+        }
+    }    
+    &__link {
+        color: $white;
+    }
+}
+
+.personal__info-label {
+    color: $white;
+    text-shadow: 1px 1px 2px black;
+}

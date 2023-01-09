@@ -1,0 +1,87 @@
+/// list-sort
+/// Sort a SASS list
+/// @param $list - A SASS list
+/// @returns A sorted SASS list
+/// @requires function list-remove
+/// @author Jake Wilson <jake.e.wilson@gmail.com>
+@function list-sort($list) {
+    $sortedlist: ();
+    @while length($list) > 0 {
+      $value: nth($list,1);
+      @each $item in $list {
+        @if $item < $value {
+          $value: $item;
+        }
+      }
+      $sortedlist: append($sortedlist, $value, 'space');
+      $list: list-remove($list, index($list, $value));
+    }
+    @return $sortedlist;
+  }
+  
+  /// map-sort
+  /// Sort map by keys
+  /// @param $map - A SASS map
+  /// @returns A SASS map sorted by keys
+  /// @requires function list-sort
+  /// @author Jake Wilson <jake.e.wilson@gmail.com>
+  @function map-sort($map) {
+    $keys: list-sort(map-keys($map));
+    $sortedMap: ();
+    @each $key in $keys {
+      $sortedMap: map-merge($sortedMap, ($key: map-get($map, $key)));
+    }
+    @return $sortedMap;
+  }
+  
+  /// list-remove
+  /// Remove an item from a list
+  /// @param $list - A SASS list
+  /// @param $index - The list index to remove
+  /// @returns A SASS list
+  /// @author Jake Wilson <jake.e.wilson@gmail.com>
+  @function list-remove($list, $index) {
+    $newList: ();
+    @for $i from 1 through length($list) {
+      @if $i != $index {
+        $newList: append($newList, nth($list,$i), 'space');
+      }
+    }
+    @return $newList;
+  }
+  
+  /// Map deep get
+  /// @author Hugo Giraudel
+  /// @access public
+  /// @param {Map} $map - Map
+  /// @param {Arglist} $keys - Key chain
+  /// @return {*} - Desired value
+  @function map-deep-get($map, $keys...) {      
+    @if type-of($map) != 'map' {
+      @error 'The argument $map: `#{$map}` is of incorrect type: `#{type-of($map)}`. Type of `Map` is required!';
+    }
+    @each $key in $keys {
+          $map: map-get($map, $key);
+      }
+      @return $map;
+  }
+
+
+  @mixin map-to-class($map, $property, $sel, $divider: '') {
+    $sel: if($sel == '' and &, &, $sel);
+    @debug $sel;
+
+    #{$sel} {
+        @each $k, $v in $map {
+            @at-root #{$sel}#{$divider}#{$k} {
+                @if type-of($v) == map {
+                    @include map-to-class($v, $property, '', $divider) {
+                        @content;
+                    }
+                } @else {
+                    #{$property}: $v;
+                }
+            }
+        }
+    }
+}

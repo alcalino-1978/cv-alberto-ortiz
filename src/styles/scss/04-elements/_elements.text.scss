@@ -1,0 +1,70 @@
+/* ==========================================================================
+   #UNCLASSED TEXT ELEMENTS
+   ========================================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+}
+
+h1 {
+  @include poly-fluid-sizing("font-size", "title", "xxl");
+}
+
+h2 {
+  @include poly-fluid-sizing("font-size", "title", "xl");
+}
+
+h3 {
+  @include poly-fluid-sizing("font-size", "title", "lg");
+}
+
+h4 {
+  @include poly-fluid-sizing("font-size", "title", "md");
+}
+
+h5 {
+  @include poly-fluid-sizing("font-size", "title", "sm");
+}
+
+h6 {
+  @include poly-fluid-sizing("font-size", "title", "xs");
+}
+
+p {
+  line-height: 1.5;
+  @include poly-fluid-sizing("margin-bottom", "spacing", "sm");
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+strong {
+  font-weight: 800;
+}
+abbr[title],
+acronym[title] {
+  border-bottom: none;
+  text-decoration: none;
+  cursor: help;
+}
+
+sub,
+sup {
+  font-size: 50%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  vertical-align: super;
+}

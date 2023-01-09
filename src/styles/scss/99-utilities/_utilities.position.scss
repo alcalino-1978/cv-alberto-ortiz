@@ -1,0 +1,123 @@
+/* ==========================================================================
+   #POSITION - UTILITIES
+   ========================================================================== */
+
+// Position Relative
+
+@include constructor-position-utilities('relative'); // .u-position__relative{}; .u-positionXs__relative
+
+// Position Absolute
+
+@include constructor-position-utilities('absolute'); // .u-position__absolute{}; .u-positionXs__absolute
+
+// Position Fixed
+
+@include constructor-position-utilities('fixed'); // .u-position__fixed{}; .u-positionXs__fixed
+
+// Position static
+
+@include constructor-position-utilities('static'); // .u-position__static{}; .u-positionXs__static
+
+.u-position__absoluteMobile {
+    @include media-breakpoint-down(lg) {
+        position: absolute !important;
+    }
+}
+.u-position__absoluteDesktop {
+    @include media-breakpoint-up(lg) {
+        position: absolute !important;
+    }
+}
+.u-position__relativeMobile {
+    @include media-breakpoint-down(lg) {
+        position: relative !important;
+    }
+}
+.u-position__relativeDesktop {
+    @include media-breakpoint-up(lg) {
+        position: relative !important;
+    }
+}
+.u-position__fixedMobile {
+    @include media-breakpoint-down(lg) {
+        position: fixed !important;
+    }
+}
+.u-position__fixedDesktop {
+    @include media-breakpoint-up(lg) {
+        position: fixed !important;
+    }
+}
+.u-position__staticMobile {
+    @include media-breakpoint-down(lg) {
+        position: static !important;
+    }
+}
+.u-position__staticDesktop {
+    @include media-breakpoint-up(lg) {
+        position: static !important;
+    }
+}
+
+.u-position__sticky {
+    position: fixed !important;
+}
+.u-position__top {
+    top: 0 !important;
+}
+.u-position__topAuto {
+    top: auto !important;
+}
+.u-position__bottom {
+    bottom: 0 !important;
+}
+.u-position__bottomAuto {
+    bottom: auto !important;
+}
+.u-position__left {
+    left: 0 !important;
+}
+.u-position__leftAuto {
+    left: auto !important;
+}
+.u-position__right {
+    right: 0 !important;
+}
+.u-position__rightAuto {
+    right: auto !important;
+}
+.u-position__center {
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+}
+.u-position__centerVertical {
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+}
+.u-position__centerHorizontal {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+}
+
+// set image or another item a blood with his parent
+.u-bloodTop {
+    transform: translate(-50%,0);
+    top: 0;
+    bottom: auto;
+}
+.u-bloodBottom {
+    transform: translate(-50%,0);
+    top: auto;
+    bottom: 0;
+}
+.u-bloodLeft {
+    transform: translate(0,-50%);
+    right: auto;
+    left: 0;
+}
+.u-bloodRight {
+    transform: translate(0,-50%);
+    left: auto;
+    right: 0;
+}

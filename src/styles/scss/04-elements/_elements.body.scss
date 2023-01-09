@@ -1,0 +1,25 @@
+body {
+    display: flex; // observar posibles comportamientos extraños con o-container que tienen overflow: hidden
+    flex-direction: column;
+    //height: 100vh; necesito quitar esto para ponerle padding al body cuando hay barra fija abajo y el footer se oculta
+    font-family: $font-family-body;
+    @include poly-fluid-sizing('font-size', 't', 'md');
+    line-height: $base-line-height;
+    color: $color-body;
+    background-color: $bg-body;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    &.is-blocked,
+    &.is-modal-open,
+    &.is-gradpanel-open {
+        overflow: hidden;
+    }
+    &.is-nav-mobile-open {
+        overflow: hidden;
+        @include media-breakpoint-up(sm) {
+            overflow: visible;
+        }
+    }
+}

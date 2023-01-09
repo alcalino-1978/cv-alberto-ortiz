@@ -1,0 +1,81 @@
+/* ==========================================================================
+   #RATING-COMPONENTS
+   ========================================================================== */
+
+.m-rating {
+    display: inline-flex;
+    align-items: baseline;
+    &__counter{
+        margin-right: $spacing-unit/2;
+    }
+    &__stars{
+        display: flex;
+        align-items: center;
+        margin-right: $spacing-unit/2;        
+    }
+    .a-star.a-icon__starSolid {
+        font-size: $spacing-sides;
+        color: $yellow;
+    }
+    .a-star.-emptyStar {
+        color: $border-input;
+    }
+    .-halfStar:after {
+        // background: transparent url("https://static.sanitas.es/img/site_general/diseno/star-half-solid.svg") no-repeat 0 0;
+        content: "\00a0";
+        position: absolute;
+        background-size: 6px;
+        top: 2px;
+        left: 2px;
+        width: $spacing-sides;
+        filter: brightness(120%);
+    }
+    &__iconGoogle {
+        display: inline-block;
+        height: 28px;
+        background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3C!-- Generator: Adobe Illustrator 26.3.1  SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 76 26' style='enable-background:new 0 0 76 26%3B' xml:space='preserve'%3E%3Cstyle type='text/css'%3E.st0%7Bclip-path:url(%23SVGID_00000053519889006402773910000018109802017288045220_)%3B%7D.st1%7Bfill:%23EA4335%3B%7D.st2%7Bfill:%23FBBC05%3B%7D.st3%7Bfill:%234285F4%3B%7D.st4%7Bfill:%2334A853%3B%7D%3C/style%3E%3Cg%3E%3Cdefs%3E%3Crect id='SVGID_1_' x='0.5' y='0.1' width='75' height='25.4'/%3E%3C/defs%3E%3CclipPath id='SVGID_00000018201612017361096100000011978370297091625661_'%3E%3Cuse xlink:href='%23SVGID_1_' style='overflow:visible%3B'/%3E%3C/clipPath%3E%3Cg style='clip-path:url(%23SVGID_00000018201612017361096100000011978370297091625661_)%3B'%3E%3Cpath class='st1' d='M32.4 13.1c0 3.5-2.8 6.1-6.1 6.1s-6.1-2.6-6.1-6.1c0-3.5 2.8-6.1 6.1-6.1S32.4 9.6 32.4 13.1z M29.7 13.1c0-2.2-1.6-3.7-3.4-3.7s-3.4 1.5-3.4 3.7c0 2.2 1.6 3.7 3.4 3.7S29.7 15.3 29.7 13.1z'/%3E%3Cpath class='st2' d='M45.7 13.1c0 3.5-2.8 6.1-6.1 6.1c-3.4 0-6.1-2.6-6.1-6.1c0-3.5 2.8-6.1 6.1-6.1C42.9 7 45.7 9.6 45.7 13.1z M43 13.1c0-2.2-1.6-3.7-3.4-3.7c-1.9 0-3.4 1.5-3.4 3.7c0 2.2 1.6 3.7 3.4 3.7C41.4 16.8 43 15.3 43 13.1z'/%3E%3Cpath class='st3' d='M58.3 7.4v11c0 4.5-2.7 6.4-5.8 6.4c-3 0-4.7-2-5.4-3.6l2.3-1c0.4 1 1.4 2.2 3.1 2.2c2 0 3.3-1.2 3.3-3.6v-0.9h-0.1c-0.6 0.7-1.8 1.4-3.2 1.4c-3.1 0-5.9-2.7-5.9-6.1c0-3.5 2.8-6.1 5.9-6.1c1.5 0 2.6 0.6 3.2 1.4h0.1v-1L58.3 7.4L58.3 7.4z M56 13.1c0-2.2-1.4-3.7-3.3-3.7c-1.9 0-3.4 1.6-3.4 3.7c0 2.1 1.6 3.7 3.4 3.7C54.5 16.8 56 15.3 56 13.1z'/%3E%3Cpath class='st4' d='M62.5 0.9v17.9h-2.6V0.9H62.5z'/%3E%3Cpath class='st1' d='M72.7 15.1l2.1 1.4c-0.7 1-2.3 2.7-5.1 2.7c-3.5 0-6.1-2.7-6.1-6.1c0-3.6 2.6-6.1 5.8-6.1c3.2 0 4.7 2.5 5.2 3.9l0.3 0.7L66.8 15c0.6 1.2 1.6 1.9 3 1.9C71.1 16.8 72.1 16.1 72.7 15.1z M66.3 12.9l5.5-2.3c-0.3-0.8-1.2-1.3-2.3-1.3C68.2 9.4 66.3 10.6 66.3 12.9z'/%3E%3Cpath class='st3' d='M10.2 11.5V8.9H19c0.1 0.5 0.1 1 0.1 1.6c0 1.9-0.5 4.4-2.2 6.1c-1.7 1.7-3.8 2.7-6.6 2.7C5 19.2 0.6 15 0.6 9.7c0-5.2 4.4-9.5 9.6-9.5c2.9 0 5 1.1 6.5 2.6l-1.8 1.8c-1.1-1-2.6-1.9-4.7-1.9c-3.8 0-6.8 3.1-6.8 6.9c0 3.8 3 6.9 6.8 6.9c2.5 0 3.9-1 4.8-1.9c0.7-0.7 1.2-1.8 1.4-3.2L10.2 11.5z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        background-size: 100%;
+        background-repeat: no-repeat;
+        &.-onlyG{
+            background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3C!-- Generator: Adobe Illustrator 26.3.1  SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 23 23' style='enable-background:new 0 0 23 23%3B' xml:space='preserve'%3E%3Cstyle type='text/css'%3E.st0%7Bfill-rule:evenodd%3Bclip-rule:evenodd%3Bfill:%234285F4%3B%7D.st1%7Bfill-rule:evenodd%3Bclip-rule:evenodd%3Bfill:%2334A853%3B%7D.st2%7Bfill-rule:evenodd%3Bclip-rule:evenodd%3Bfill:%23FBBC05%3B%7D.st3%7Bfill-rule:evenodd%3Bclip-rule:evenodd%3Bfill:%23EA4335%3B%7D%3C/style%3E%3Cpath class='st0' d='M22.1 11.4c0-0.8-0.1-1.5-0.2-2.3H11.5v4.3h6c-0.3 1.4-1 2.6-2.2 3.3v2.8h3.6C20.9 17.6 22.1 14.7 22.1 11.4z'/%3E%3Cpath class='st1' d='M11.5 22.2c3 0 5.5-1 7.3-2.7l-3.6-2.8c-1 0.7-2.3 1.1-3.7 1.1c-2.9 0-5.3-1.9-6.2-4.6H1.6v2.9C3.4 19.7 7.2 22.2 11.5 22.2z'/%3E%3Cpath class='st2' d='M5.3 13.2C5.1 12.5 5 11.8 5 11.1S5.1 9.7 5.3 9V6.1H1.6c-0.7 1.5-1.2 3.2-1.2 5c0 1.8 0.4 3.5 1.2 5L5.3 13.2z'/%3E%3Cpath class='st3' d='M11.5 4.4c1.6 0 3.1 0.6 4.2 1.7l3.2-3.2C17 1.1 14.5 0 11.5 0C7.2 0 3.4 2.5 1.6 6.1L5.3 9C6.2 6.4 8.6 4.4 11.5 4.4z'/%3E%3C/svg%3E");
+            width: 22px;
+        }
+        &.-colorWhite {
+            filter: brightness(0) invert(1);
+        }
+    }
+}
+
+// Counter likes social
+.a-counterLike {
+    display: flex;
+    align-items: center;
+}
+button.a-counterLike {
+    .a-counterLike__icon{
+        color: $primary-color;
+    }
+    &.-isDisabled {
+        color: $text-input;
+        .a-counterLike__icon{
+            color: $text-input;
+        }
+    }   
+}
+
+// Component avatar user for cards tooltip review
+.m-avatarUser {
+    display: flex;
+    padding-left: $spacing-unit;
+    &__name {
+        font-size: 1.4rem;
+        font-weight: bold;
+    }
+    &__date {
+        font-size: 1.2rem;
+    }
+    &__icon {
+        font-size: 36px;
+        margin-right: $spacing-sides;
+    }
+}

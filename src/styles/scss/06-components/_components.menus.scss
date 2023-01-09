@@ -1,0 +1,294 @@
+/* ==========================================================================
+#MENUS-COMPONENTS
+========================================================================== */
+
+.m-primaryNavMenu,
+%menuNav {
+    display: flex;
+    font-size: 1.8rem;
+    color: $secondary-color;
+    width: 100%;
+    @include media-breakpoint-down(lg) {
+        height: 100%;
+        overflow-y: scroll;
+        max-width: 32rem;
+        padding-top: 4rem;
+        background: linear-gradient(to bottom, $secondary-color, $secondary-color 20%, $white 20%, $white);
+        flex-direction: column;
+        transition: all ease-out $transition-duration;
+        display: block;
+    }
+    @include media-breakpoint-up(lg) {
+        position: relative;
+    }
+    &__subNavMenu {
+        &.m-subNavMenu {
+            display: none;
+            color: $white;
+            @include media-breakpoint-up(lg){
+                top: 100%;
+                &:before, &:after {
+                    content: "";
+                    width: 100vw;
+                    height: 100%;
+                    background-color: $primary-color;
+                    top: 0;
+                    left: 0;
+                    z-index: -1;
+                    position: absolute;
+                }
+                &:after {
+                    left: auto;
+                    right: 0;
+                }
+            }
+        }
+    }
+    &__item,
+    %menuNav__item {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        background-color: $white;
+        &:last-of-type {
+            @include media-breakpoint-down(lg) {
+                border-top: 2px solid $tabs;
+            }
+        }
+        text-align: left;
+        @include media-breakpoint-up(lg) {
+            border: none;
+        }
+        &.-isOpen {
+            background-color: $selected-area;
+        }
+        &.-isOver> {
+            .m-subNavMenu.m-primaryNavMenu__subNavMenu {
+                @include media-breakpoint-up(lg) {
+                    display: flex;
+                }
+            }
+            @include media-breakpoint-up(lg) {
+                .m-primaryNavMenu__link {
+                    background-color: $primary-color;
+                    color: $white;
+                }
+            }
+        }
+    }
+    &__link,
+    %menuNav__link {
+        outline: none;
+        padding: $spacing-unit $spacing-sides;
+        color: $secondary-color;
+        transition: all 0.15s linear 0s;
+        display: flex;
+        width: auto;
+        flex-grow: 1;
+        justify-content: flex-start;
+        align-items: center;
+        min-height: 5.6rem;
+        font-weight: bold;
+        .m-primaryNavMenu__icon {
+            font-size: 2.4rem;
+            color: $primary-color;
+        }
+        @include media-breakpoint-up(lg) {
+            font-weight: 300;
+            &:hover {
+                color: $white;
+                background-color: $primary-color;
+                .m-primaryNavMenu__icon {
+                    color: $white;
+                }
+            }
+        }
+    }
+    &__link {
+        &:focus {
+            outline: none;
+        }
+        @include media-breakpoint-down(lg) {
+            width: 80%;
+        }
+    }
+    &__icon {
+        &[class^="arrow"] {
+            width: 6rem;
+            height: 6rem;
+            margin-top: 0;
+            padding: 0.5rem;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    &:before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 32rem;
+        height: 4rem;
+        background-color: $white;
+        transition: all ease-out $transition-duration;
+        z-index: 2;
+    }
+    &.-isOpen {
+        left: 0;
+        &:before {
+            left: 0;
+        }
+    }
+    @include media-breakpoint-up(lg) {
+        &.-centerVerticalItems .m-subNavMenu__link {
+            display:flex;
+            &:only-child {
+                justify-content: center;
+                align-items: center;
+                min-height: 12rem;
+            }
+        }
+    }
+}
+.-isSticky .m-primaryNavMenu__subNavMenu.m-subNavMenu {
+    @include media-breakpoint-up(lg){
+        position: fixed;
+        &:before, &:after {
+            display: none;
+        }
+    }
+}
+.m-subNavMenu {
+    padding: $spacing-sides;
+    transition: all ease-out 0$transition-duration;
+    @include media-breakpoint-up(lg) {
+        background-color: $primary-color;
+        position: absolute;
+        z-index: map-get($map: $map-z-index, $key: navbar);
+        left: 0;
+        right: 0;
+    }
+    &__item {
+        //border-bottom: 1px solid $tabs;
+        &:last-of-type {
+            border: none;
+        }
+        @include media-breakpoint-up(lg) {
+            border-bottom: none;
+            border-right: 1px solid map-deep-get($map-colours, primary, cyan, tint-50);
+            padding: 0 $spacing-sides;
+            &:last-of-type {
+                border: none
+            }
+        }
+    }
+    &__link {
+        outline: none;
+        color: $secondary-color;
+        padding: $spacing-sides 0;
+        display: block;
+        @include media-breakpoint-up(lg) {
+            color: $white;
+            padding: $spacing-unit $spacing-sides;
+            font-size: 1.5rem;
+            &:hover {
+                background-color: $secondary-color;
+            }              
+        }
+        &:focus {
+            outline: none;
+        }
+    }
+    &__title {
+        font-size: $base-font-size;
+        margin-bottom: 0;
+    }
+    &__ul {
+        display: flex;
+        flex-wrap: nowrap;
+        margin: 0 auto;
+        @include media-breakpoint-up(lg) {
+            width: $width-row-container-lg;
+        }
+        @include media-breakpoint-up(xl) {
+            width: $width-row-container-xl;
+        }
+    }
+    &.-isOpen {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0 4rem;
+    }
+}
+
+.m-secondaryNavMenu {
+    z-index: -1;
+    @extend %menuNav;
+    opacity: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: 1 ease-out opacity;
+    @include media-breakpoint-between(md,lg) {
+        font-size: 1.4rem;
+    }
+    &__item {
+        @extend %menuNav__item;
+    }
+    &__link {
+        @extend %menuNav__link;
+        &.-isActive {
+            position: relative;
+            font-weight: bolder;
+                &:after {
+                content: "";
+                height: 0.5rem;
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                background-color: $secondary-color
+            }
+        }
+    }
+    &.-isSticky {
+        display: flex;
+        opacity: 1;
+        height: $spacing-xl;
+        top: 0;
+        z-index: map-get($map: $map-z-index, $key: sticky);
+        &:after {
+            content: "";
+            background: rgba(255, 255, 255, 0.9);
+            position: fixed;
+            left: 50%;
+            width: 100vw;
+            height: calc(100% + 0.3rem);
+            z-index: -1;
+            transform: translateX(-50%);
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+        }
+        .m-secondaryNavMenu__item {
+            background-color: transparent;
+            &:last-of-type {
+                border: none;
+            }
+        }
+        .m-secondaryNavMenu__link {
+            min-height: auto;
+        }
+    }
+}
+
+// Sticky sidebar
+.m-stickySidebar {
+    &.-isStickyDesktop {
+        @include media-breakpoint-up(lg) {
+            position: sticky;
+        }
+    }
+}

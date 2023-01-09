@@ -1,0 +1,17 @@
+// z-layers - variables
+
+$map-z-index: (
+    banner: 10,
+    elementBackdrop: 90, 
+    element: 100, 
+    fixed: 1030, 
+    sticky: 1030, 
+    popover: 1060, 
+    tooltip: 1070, 
+    navbar: 1080, 
+    dropdownBackdrop: 1090, 
+    dropdown: 1095, 
+    modalBackdrop: 1100, 
+    modal: 1110, 
+    maxValue: 99999
+    );

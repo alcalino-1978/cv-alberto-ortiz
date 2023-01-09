@@ -1,0 +1,38 @@
+/* ==========================================================================
+   #CONTRIBUTED-COMPONENT
+   ========================================================================== */
+
+.o-contributed {
+    > {
+        ul:not(.m-list) {
+            @extend %bulletList;            
+        }
+        ol {
+            @extend %orderedList;            
+        }
+        h3, h4 {
+            line-height: 1.2;
+            color: #00335b;
+            font-weight: 800;
+            margin-bottom: $spacing-unit;
+        }
+        h4 {
+            font-size: 1.6rem;
+            @include media-breakpoint-up(sm) {
+                font-size: calc(1.13636vw + 0.87273rem);
+            }
+            @include media-breakpoint-up(lg) {
+                font-size: 2rem;
+            }
+        }
+        h3 {
+            font-size: 1.8rem;
+            @include media-breakpoint-up(sm) {
+                font-size: calc(2.27273vw + 0.34545rem);
+            }
+            @include media-breakpoint-up(lg) {
+                font-size: 2.6rem;
+            }
+        }
+    }
+}

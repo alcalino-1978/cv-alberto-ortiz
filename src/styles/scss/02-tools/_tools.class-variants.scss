@@ -1,0 +1,35 @@
+// Using Sass’ @at-root for Nesting Variants
+// Buddy Reno
+// https://medium.com/buddy-reno/using-sass-at-root-for-nesting-variants-874735eb5766
+
+
+@mixin variant($selector) {
+  #{&} {
+    @at-root #{$selector}#{&} {
+        @content;
+    }
+  }    
+}
+// .Component {
+//   .title {
+//     color: black;
+    
+//     @include variant('.is-active') {
+//      color: blue;
+//     }
+//   }
+// }
+
+//elements get appended with "__" and the $name
+@mixin e($name) {
+  @at-root   #{&}__#{$name} {
+    @content;
+  }
+}
+
+//modifiers get appended with "--" and the $name
+@mixin m($name) {
+  @at-root   #{&}--#{$name} {
+    @content;
+  }
+}

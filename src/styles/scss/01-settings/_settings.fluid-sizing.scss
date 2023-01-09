@@ -1,0 +1,74 @@
+// spacing - variables
+
+$spacing-unit: calc($base-font-size / 2); // 0.8rem
+
+$spacing-xs: $spacing-unit;
+$spacing-sm: $spacing-unit * 2;
+$spacing-md: $spacing-unit * 3;
+$spacing-lg: $spacing-unit * 4;
+$spacing-xl: $spacing-unit * 5;
+$spacing-2xl: $spacing-unit * 6;
+$spacing-3xl: $spacing-unit * 7;
+$spacing-4xl: $spacing-unit * 8;
+$spacing-5xl: $spacing-unit * 9;
+$spacing-6xl: $spacing-unit * 10;
+
+$spacing-sides: $spacing-sm;
+$spacing-sides\@tablet: $spacing-md;
+$spacing-sides\@desktop: $spacing-lg;
+
+$spacing-header-masthead:  $spacing-unit*5;
+
+$important: !important;
+
+// fluid-sizing - variables
+
+// source: https://www.smashingmagazine.com/2017/05/fluid-responsive-typography-css-poly-fluid-sizing/
+
+// codepen adaptado: https://codepen.io/alcalino_78/pen/KbdaGR
+
+$map-fluid-sizing: (
+        xxxl: (
+            title: (max: 5.6rem, min: 3.8rem),
+            t: (max: 3.2rem, min: 2.2rem)
+        ),
+        xxl: (
+            spacing: (max: $spacing-2xl, min: $spacing-xl), // 4.8rem, 4rem
+            title: (max: 4.8rem, min: 3rem),
+            sub: (max: 3.2rem, min: 2.2rem), 
+            t: (max: 2.2rem, min: 1.8rem)
+        ),
+        xl: (
+            spacing: (max: $spacing-xl, min: $spacing-lg), // 4rem, 3.2rem
+            title: (max: 4.2rem, min: 2.6rem),
+            sub: (max: 2.8rem, min: 2rem),
+            t: (max: 2rem, min: 1.6rem)
+        ),
+        lg: (
+            spacing: (max: $spacing-lg, min: $spacing-md),  // 4.2rem, 2.4rem
+            title: (max: 3.6rem, min: 2.2rem),
+            sub: (max: 2.4rem, min: 1.8rem),
+            t: (max: 1.8rem, min:  1.4rem)
+        ),
+        md: (
+            spacing: (max: $spacing-md, min: $spacing-sm), // 2.4rem, 1.6rem
+            title: (max: 3rem, min: 2rem),
+            sub: (max: 2.2rem, min: 1.6rem),
+            t: (max: 1.6rem, min: 1.3rem)
+        ),
+        sm: (
+            spacing: (max: $spacing-sm, min: $spacing-xs), // 1.6rem, 0.8rem
+            title: (max: 2.6rem, min: 1.8rem),
+            sub: (max: 2rem, min: 1.4rem),
+            t: (max: 1.4rem, min: 1.2rem)
+        ),
+        xs: (
+            spacing: (max: $spacing-xs, min: $spacing-xs), // 0.8rem, 0.8rem
+            title: (max: 1.8rem, min: 1.6rem),
+            sub: (max: 1.6rem, min: 1.4rem),
+            t: (max: 1.2rem, min: 1.2rem)
+        ),
+        xxs: (            
+            t: (max: 1rem, min: 1rem)
+        )
+);

@@ -1,0 +1,61 @@
+// Mixin constructor text-align
+
+@mixin border-utilities($class, $thisPrefix) {
+    &#{$thisPrefix}__#{$class} {
+      @if $class == "primary" {
+        border-color: $primary-color !important;
+      } @else if $class == "center" {
+        border-color: center !important;
+      } @else if $class == "right" {
+        border-color: right !important;
+      } @else if $class == "justify" {
+        border-color: justify !important;
+      } @else if $class == "lowercase" {
+        text-transform: lowercase !important;
+      } @else if $class == "uppercase" {
+        text-transform: uppercase !important;
+      } @else if $class == "capitalize" {
+        text-transform: capitalize !important;
+      } @else if $class == "bold" or $class == "plus" {
+        font-weight: bold !important;
+      } @else if $class == "bolder" or $class == "extraplus" {
+        font-weight: bolder !important;
+      } @else if $class == "normal" {
+        font-weight: normal !important;
+      } @else if $class == "lighter" {
+        font-weight: lighter !important;
+      } @else if $class == "italic" {
+        font-style: italic !important;
+      } @else if $class == "nowrap" {
+        white-space: nowrap !important;
+      }
+    }
+  }
+  
+  @mixin constructor-border-utilities($class) {
+    .u-border {
+      @include border-utilities($class, '');
+       @for $i from 1 through length($breakpoint-up-prefixes) {
+          $thisPrefix: nth($breakpoint-up-prefixes, $i);
+          @if $thisPrefix == "Xs" {
+            @include border-utilities($class, $thisPrefix);
+          } @else if $thisPrefix == "Sm" {
+            @include media-breakpoint-up(sm) {
+              @include border-utilities($class, $thisPrefix);
+            }
+          } @else if $thisPrefix == "Md" {
+            @include media-breakpoint-up(md) {
+              @include border-utilities($class, $thisPrefix);
+            }
+          } @else if $thisPrefix == "Lg" {
+            @include media-breakpoint-up(lg) {
+              @include border-utilities($class, $thisPrefix);
+            }
+          } @else if $thisPrefix == "Xl" {
+            @include media-breakpoint-up(xl) {
+              @include border-utilities($class, $thisPrefix);
+            }
+          }
+        }
+     }
+  }

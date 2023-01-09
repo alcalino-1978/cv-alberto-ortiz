@@ -1,0 +1,67 @@
+/* ==========================================================================
+   #STATUS-UTILITIES
+   ========================================================================== */
+
+.-isOk,
+.-isError {
+  display: none;
+}
+
+.-isClose,
+.-isHide {
+  display: none; 
+}
+
+.-isOpen,
+.-isShow {
+  display: flex;
+}
+.-isClose,
+.-isHide {
+  &Mobile {
+    @include media-breakpoint-down(lg) {
+      display: none;
+    }
+  }
+  &Desktop {
+    @include media-breakpoint-up(lg) {
+      display: none;
+    }
+  }
+}
+.-isOpen,
+.-isShow {
+  &Mobile {
+    @include media-breakpoint-down(lg) {
+      display: flex;
+    }
+  }
+  &Desktop {
+    @include media-breakpoint-up(lg) {
+      display: flex;
+    }
+  }
+}
+
+.-isSticky {
+  position: fixed;
+  .-isSticky__contentHidden {
+    display: none;
+  }
+  .-isSticky__contentBeforeShown {
+    display: block;
+  }
+  &Mobile {
+    @include media-breakpoint-down(lg) {
+      position: fixed;
+    }
+  }
+  &Desktop {
+    @include media-breakpoint-up(lg) {
+      position: fixed;
+    }
+  }
+}
+.-isSticky__contentBeforeShown {
+  display: none;
+}

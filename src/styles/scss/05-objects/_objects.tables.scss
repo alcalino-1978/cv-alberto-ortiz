@@ -1,0 +1,167 @@
+/* ==========================================================================
+   #tables - objects
+   ========================================================================== */
+
+.table {
+    display: block;
+    min-width: 100%;
+    border-collapse: collapse;
+    border: none;
+    @include poly-fluid-sizing('font-size', 't', 'md');
+    text-align: left;
+    color: $gray;
+    overflow-x: auto;
+    margin: 0;
+    @include media-breakpoint-up(sm) {
+        display: table;
+    }
+    caption {
+        padding: $spacing-sides 0;
+        text-align: center;
+        color: $black;
+        font-size: 1.6rem;
+    }
+    tr {
+        display: table-row;
+    }
+    td,
+    th {
+        text-align: center;
+        padding: 1.6rem;
+        @include media-breakpoint-up(sm) {
+            text-align: left;
+        }
+    }
+    thead {
+        border-bottom: 0.2rem solid #0079c8;
+    }
+    tbody {
+        border-bottom: 0.2rem solid $background-240;
+        @include media-breakpoint-up(sm) {
+            border-width: 0.1rem;
+        }
+        tr {
+            border-top: 0.2rem solid $background-240;
+            &:first-of-type {
+                border-top: none;
+            }
+            @include media-breakpoint-up(sm) {
+                border-width: 0.1rem;
+            }
+        }
+        td {
+            vertical-align: middle;
+            ul {
+                text-align: left;
+            }
+            &.td--align-top {
+                vertical-align: top;
+            }
+            &.td--align-bottom {
+                vertical-align: bottom;
+            }
+        }
+        // styles for hybrid accordion tables
+        &.is-open {
+            display: table-row-group;
+        }
+        .trigger {
+            margin-right: $spacing-unit*3;
+            @include media-breakpoint-down(sm) {
+                margin-right: $spacing-unit;
+            }
+        }
+    }
+    tfoot {
+        font-size: 75%;
+    }
+    &.table--strips {
+        tr {
+            border-top-width: 0;
+            &:nth-child(even) {
+                background-color: $table;
+            }
+        }
+    }
+    &.table--list {
+        @include media-breakpoint-down(xs) {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            background: none;
+            thead {
+                display: none;
+            }
+            tr {
+                padding: $spacing-sides;
+                display: block;
+                width: 100%;
+                &:first-child {
+                    border-top: none;
+                }
+            }
+            td {
+                display: block;
+                white-space: normal;
+                padding: $spacing-unit 0;
+                border-bottom: none;
+                background: none;
+            }
+        }
+    }
+    &.table--shadow{
+        -webkit-overflow-scrolling: touch;
+        background: -webkit-radial-gradient(left ellipse, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 75%) 0 center, -webkit-radial-gradient(right ellipse, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 75%) 100% center;
+        background: radial-gradient(ellipse at left, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 75%) 0 center, radial-gradient(ellipse at right, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 75%) 100% center;
+        background-size: 8px 100%,8px 100%;
+        background-repeat: no-repeat;
+        background-color: rgba(255, 255, 255, 1);
+        background-attachment: scroll,scroll;
+    }
+    &.table--shadow-left {
+        background-attachment: scroll, fixed;
+    }
+    
+    &.table--shadow-right {
+        background-attachment: fixed, scroll;
+    }
+    &.table--separator-rows {
+        tbody {
+            border-color: $primary-color;
+            border-width: 1px;
+            &:nth-last-child(2) {
+                border: none;
+            }
+            &.-isopen:last-of-type {
+                border-top: 1px solid $primary-color;
+            }
+        }
+    }
+    &.table--stripes {
+        width: 100%;
+        display: table;
+        caption {
+            font-weight: 500;
+            display: table-header-group;
+        }
+        tbody {
+            border: none;
+            tr {
+                border: none;
+                &:nth-child(even) {
+                    background-color: map-deep-get($map-colours, primary, tint-5);
+                }
+            }
+            td {
+                padding: $spacing-unit $spacing-sides;
+                text-align: left;
+                vertical-align: top;
+                &.-telwidth {
+                    min-width: 12rem;
+                }
+            }
+
+        } 
+        
+    }
+}

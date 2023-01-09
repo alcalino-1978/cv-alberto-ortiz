@@ -1,0 +1,407 @@
+/* ==========================================================================
+   #FORMS-COMPONENTS
+   ========================================================================== */
+
+.m-form {
+  &Group {
+    margin-bottom: $spacing-sides;
+    text-align: left;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+    &__icon {
+      position: absolute;
+      top: 0.2rem;
+      left: $spacing-unit;
+      font-size: $spacing-md;
+      line-height: $spacing-2xl;
+      z-index: 1;
+      color: $primary-color;
+      ~ input,
+      ~ select {
+        padding-left: $spacing-xl;
+      }
+      &::before {
+        color: $primary-color;
+      }
+      &.-iconRight {
+        left: auto;
+        right: $spacing-unit;
+        & ~ input,
+        ~ select {
+          padding-left: $spacing-unit;
+          padding-right: $spacing-xl;
+        }
+      }
+    }
+    &__buttonInput {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 1px;
+      bottom:1px;
+      right: 1px;
+      background:$primary-color;
+      width:4.6rem;
+      font-size: $spacing-lg;
+      line-height: $spacing-2xl;
+      z-index: 1;
+      color: $white;
+      border-top-right-radius: $border-radius - 1;
+      border-bottom-right-radius: $border-radius - 1;
+      ~ input{
+        padding-right: $spacing-xl;
+      }
+    }
+    
+  }
+  &Element {
+    width: 100%;
+    position: relative;
+  }
+  // Modifier for Linear Forms with only border-bottom and transparent background
+  &.-linearForm {
+    .m-formGroup__item {
+      border-width: 0 0 0.1rem 0;
+      border-radius: 0;
+      background-color: transparent;
+      border-color: $primary-color;
+      padding-left: 0;
+    }
+    .m-formGroup__icon ~ input {
+      padding-left: 4rem;
+    }
+  }
+  &.-noBorders {
+    input, select, textarea {
+      border: 0;
+    }
+  }
+}
+
+.m-form .m-formGroup .m-formGroup__item,
+.m-form .m-formGroup select.m-formGroup__item,
+.m-form .m-formGroup input.m-formGroup__item {
+  color: $gray;
+}
+
+input,
+button,
+select {
+  &[type="submit"] {
+    &.-sec {
+      background-color: transparent;
+      color: $primary-color;
+      border: 2px solid $primary-color;
+    }
+    &.m-formGroup__icon.a-buttonSearch {
+      padding: 0;
+      background: none;
+      right: 0;
+      height: 100%;
+    }
+  }
+}
+input,
+button,
+select {
+  &.-withouStyles {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    min-height: 0;
+    &:focus {
+      outline: 0;
+      box-shadow: none;
+      background-color: transparent;
+    }
+  }
+  &.-autoSize {
+    max-width: $spacing-2xl;
+  }
+  &.-typeRounded {
+    border-radius: $border-radius-rounded;
+    &:focus-visible {
+      outline: none;
+    }
+  }
+  &.-widther {
+    width: 32rem;
+    @include media-breakpoint-down(md) {
+      width: 100%;
+    }
+    &.-onlyMobile {
+      @include media-breakpoint-up(lg) {   
+          width: auto;             
+          max-width: initial;
+      }
+    }
+    &.-onlyDesktop {
+        @include media-breakpoint-down(lg) {
+            width: auto;             
+            max-width: initial;
+        }
+    }
+  }
+}
+
+// Styles multiStepForm
+
+.a-buttonBack {
+  position: absolute;
+  top: 0;
+  right: 0;
+  &.msf_btn_back {
+    width: 5rem;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+// Styles accordion feeder coverage empresas
+#desp-comp {
+  background-color: $white;
+  box-shadow: $box-shadow;
+  border-bottom-left-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  top: 100%;
+  z-index: 1;
+}
+
+
+// input type range
+
+.m-inputRange {
+  width: 100%;
+  &.-small {
+    input[type="range"] {
+      height: 4px;
+    }
+    input::-webkit-slider-thumb {
+      box-shadow:none;
+      height: 15px;
+      width: 15px;
+    }
+    .m-inputRange-btn {
+      height: 2.4rem;
+      width: 2.4rem;
+      display: flex;
+      flex-shrink: 0;
+      background: $info;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+      padding: 0;
+    }
+  }
+}
+
+input[type="range"] {
+  background: linear-gradient(to right, #409bd6 0%, #409bd6 50%, #dadbdb 50%, #dadbdb 100%);
+  border: 0;
+  border-radius: 8px;
+  height: 5px;
+  outline: none;
+  transition: background 450ms ease-in;
+  width: 100%;
+  -webkit-appearance: none;
+}
+
+input::-webkit-slider-thumb {
+  background-color: #7fbce3;
+  border-radius: 0;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+
+//Switch Button
+
+.m-switchButton {
+  position: relative;
+  display: inline-block;
+  width: 90px;
+  height: 34px;
+  input {
+    display:none;
+    &:focus + .m-switchButton__content {
+      box-shadow: 0 0 1px #2196F3;
+    }
+  
+    &:checked + .m-switchButton__content:before {
+      -webkit-transform: translateX(55px);
+      -ms-transform: translateX(55px);
+      transform: translateX(55px);
+    }
+    &:checked + .m-switchButton__content .m-switchButton__on {
+      display: block;
+    }
+    &:checked + .m-switchButton__content .m-switchButton__off {
+      display: none;
+    }
+
+  }
+ 
+  .m-switchButton__content {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid $text-input;
+    background-color: $tabs;
+    -webkit-transition: .2s;
+    transition: .2s;
+    border-radius:3.2rem;
+    &:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 3px;
+      background-color: $primary-color;
+      -webkit-transition: .2s;
+      transition: .2s;
+      border-radius: 50%;
+    }
+    .m-switchButton__on{
+      display: none;
+    }
+    .m-switchButton__on, .m-switchButton__off {
+      user-select: none;
+      position: absolute;
+      transform: translate(-50%,-50%);
+      top: 50%;
+      left: 50%;
+      font-size: 13px;
+    }
+  }
+}
+
+// styles for attachment type=file button
+.a-upLoadButton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+// styles for loader icon
+.a-loaderImage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: $spacing-unit*9;
+}
+
+// styling radios and check with appearance of buttons
+input[type="checkbox"]+label.a-button {
+	&::before {
+		display: none;
+	}
+	&:hover {
+		background-color: inherit;
+		border-color: inherit;
+		color: inherit;
+	}
+}
+input[type="radio"]+label.a-button {
+	&::before {
+		display: none;
+	}
+	&:hover {
+		background-color: inherit;
+		border-color: inherit;
+		color: inherit;
+	}
+}
+input[type="checkbox"] {
+	&:checked+label.a-button {
+		&::before {
+			display: none;
+		}
+		background-color: $primary-color;
+		border-color: $primary-color;
+		color: $white;
+		&:hover {
+			background-color: $primary-color;
+			border-color: $primary-color;
+			color: $white;
+		}
+	}
+}
+input[type="radio"] {
+	&:checked+label.a-button {
+		&::before {
+			display: none;
+		}
+		&::after {
+			display: none;
+		}
+		background-color: $primary-color;
+		border-color: $primary-color;
+		color: $white;
+		&:hover {
+			background-color: $primary-color;
+			border-color: $primary-color;
+			color: $white;
+		}
+	}
+}
+
+// border radius in component alert
+.m-formGroup[class^="u-bgColorInteractions"] {
+  border-radius: $border-radius;
+}
+
+// component a-label with the same styles as the labels
+
+.a-label {
+  @extend %label;
+}
+
+// select with arrow white
+
+.-positionRightIcon {
+  width: auto;
+  display: inline-block;
+  select {
+    padding-right: $spacing-2xl;
+    // background-image: url(/img/site_general/diseno/icon-arrow-down-white.svg);
+    &:focus {
+      background-color: $secondary-color;
+    }
+    &.-isUnfolded {
+      // background-image: url(/img/site_general/diseno/icon-arrow-up-white.svg);
+    }
+  }
+  .m-formGroup__icon {
+    z-index: 11;
+    left: auto;
+    right: $spacing-sides;
+    font-size: 18px;
+    &::before {
+      color: $white;
+    }
+  }
+}
+
+//text-indent when textarea has a icon
+.m-formGroup__icon + textarea {
+  text-indent: 18px;
+}

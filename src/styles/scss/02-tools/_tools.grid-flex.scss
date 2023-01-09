@@ -1,0 +1,628 @@
+// FLEXBOX
+@mixin flexbox {
+    display: flex; // new
+}
+
+// Usage
+// @include flexbox();
+@mixin inline-flex {
+    display: inline-flex; // new
+}
+
+// Usage
+// @include inline-flex();
+@mixin flex($values) {
+    flex: $values;
+}
+
+// Usage
+// @include flex(1, 2);
+@mixin flex-order($order) {
+    order: $order; // new
+}
+
+// Usage
+// @include flex-order(3);
+@mixin flex-direction($value: row) {
+    flex-direction: $value;
+}
+
+// Usage
+// @include flex-direction(column);
+// Flex Line Wrapping
+// - applies to: flex containers
+// nowrap | wrap | wrap-reverse
+@mixin flex-wrap($wrap) {
+    flex-wrap: $wrap;
+}
+
+// Axis Alignment
+// - applies to: flex containers
+// flex-start | flex-end | center | space-between | space-around
+@mixin justify-content($justify) {
+    justify-content: $justify;
+}
+
+// Packing Flex Lines
+// - applies to: multi-line flex containers
+// flex-start | flex-end | center | space-between | space-around | stretch
+@mixin align-content($align) {
+    align-content: $align;
+}
+
+@mixin align-items($align) {
+    align-items: $align;
+}
+
+@mixin align-self($align) {
+    align-self: $align;
+}
+
+@mixin flex-basis($basis) {
+    flex-basis: $basis;
+}
+
+// CONSTRUCTOR GRID-FLEX
+@mixin row($full-width: "false") {
+    margin: 0 auto;
+    width: 100%;
+    @include flexbox();
+    @include flex-direction(row);
+    flex: 0 1 auto;
+    flex-wrap: wrap;
+    // // Overrides flexbox's default behavior of making all children equal height
+    // align-items: flex-start; // If this was not in place it would require two classes to make a row full of unequal height columns aligned top, middle, bottom
+    @if type-of($content-well-max-width)==number and $content-well-max-width !=0 and $full-width=="false" {
+        max-width: $content-well-max-width;
+    }
+}
+
+// Condition to run inside of the col mixin * not for developer use *
+@mixin col-condition($col-number) {
+    @if type-of($col-number)==number {
+        @if $col-number>$num-cols or $col-number==0 {
+            @warn "Column number must be greater than 0 and less than or equal to total number of columns in the grid (#{$num-cols})";
+        }
+        @else {
+            box-sizing: border-box;
+            flex-basis: calc(100% / $num-cols) * $col-number;
+            max-width: calc(100% / $num-cols) * $col-number;
+            padding: 0 $spacing-unit;
+        }
+        // If no col number is passed then arg is set to "auto" by default
+        // "auto" mode fills the horizontal space with evenly sized containers
+    }
+    @else if $col-number=="auto" {
+        padding: 0 $spacing-unit;
+    }
+    @else {
+        @warn "Column number argument must either be the string 'auto' or a number greater than 0 and less than or equal to total number of columns in the grid (#{$num-cols})";
+    }
+}
+
+// Condition to run inside of the col mixin * not for developer use *
+@mixin col($breakpoint: "xs", $col-number: "auto") {
+    // If no breakpoint is passed and a col number is just use the first arg as the col number and act like xs
+    @if type-of($breakpoint)==number {
+        $col-number: $breakpoint;
+        @include col-condition($col-number);
+    }
+    @else if $breakpoint=="xs" {
+        @include col-condition($col-number);
+    }
+    @else if $breakpoint=="sm" {
+        @include media-breakpoint-up(sm) {
+            @include col-condition($col-number);
+        }
+    }
+    @else if $breakpoint=="md" {
+        @include media-breakpoint-up(md) {
+            @include col-condition($col-number);
+        }
+    }
+    @else if $breakpoint=="lg" {
+        @include media-breakpoint-up(lg) {
+            @include col-condition($col-number);
+        }
+    }
+    @else if $breakpoint=="xl" {
+        @include media-breakpoint-up(xl) {
+            @include col-condition($col-number);
+        }
+    }
+    @else {
+        @warn "col mixin requires one of the existing breakpoint prefixes (#{$breakpoint-up-prefixes})";
+    }
+}
+
+// Condition to run inside of the col-offset mixin * not for developer use *
+@mixin col-offset-condition($offset-number) {
+    @if type-of($offset-number) !=number {
+        @warn "Column offset number must be a number (only arg or second arg in the col mixin)";
+    }
+    @else if $offset-number==0 {
+        @warn "Column offset number must be greater than 0 and less than or equal to total number of columns in the grid (#{$num-cols})";
+    }
+    @else if $offset-number>$num-cols {
+        @warn "Column offset number must be greater than 0 and less than or equal to total number of columns in the grid (#{$num-cols})";
+    }
+    @else {
+        margin-left: 100% / $num-cols * $offset-number;
+    }
+}
+
+// Condition to run inside of the col-offset mixin * not for developer use *
+@mixin col-offset($breakpoint: "xs", $offset-number: 0) {
+    // If no breakpoint is passed and a col number is just use the first arg as the col number and act like xs
+    @if type-of($breakpoint)==number {
+        $offset-number: $breakpoint;
+        @include col-offset-condition($offset-number);
+    }
+    @else if $breakpoint=="xs" {
+        @include col-offset-condition($offset-number);
+    }
+    @else if $breakpoint=="sm" {
+        @include media-breakpoint-up(sm) {
+            @include col-offset-condition($offset-number);
+        }
+    }
+    @else if $breakpoint=="md" {
+        @include media-breakpoint-up(md) {
+            @include col-offset-condition($offset-number);
+        }
+    }
+    @else if $breakpoint=="lg" {
+        @include media-breakpoint-up(lg) {
+            @include col-offset-condition($offset-number);
+        }
+    }
+    @else if $breakpoint=="xl" {
+        @include media-breakpoint-up(xl) {
+            @include col-offset-condition($offset-number);
+        }
+    }
+    @else {
+        @warn "col mixin requires one of the existing breakpoint prefixes (#{$breakpoint-up-prefixes})";
+    }
+}
+
+@mixin start($breakpoint: "xs") {
+    @if $breakpoint=="xs" {
+        justify-content: flex-start;
+    }
+    @else if $breakpoint=="sm" {
+        @include media-breakpoint-up(sm) {
+            justify-content: flex-start;
+        }
+    }
+    @else if $breakpoint=="md" {
+        @include media-breakpoint-up(md) {
+            justify-content: flex-start;
+        }
+    }
+    @else if $breakpoint=="lg" {
+        @include media-breakpoint-up(lg) {
+            justify-content: flex-start;
+        }
+    }
+    @else if $breakpoint=="xl" {
+        @include media-breakpoint-up(xl) {
+            justify-content: flex-start;
+        }
+    }
+    @else {
+        @warn "start mixin arg must be one of the existing breakpoints (#{$breakpoint-up-prefixes})";
+    }
+}
+
+@mixin center($breakpoint: "xs") {
+    @if $breakpoint=="xs" {
+        justify-content: center;
+    }
+    @else if $breakpoint=="sm" {
+        @include media-breakpoint-up(sm) {
+            justify-content: center;
+        }
+    }
+    @else if $breakpoint=="md" {
+        @include media-breakpoint-up(md) {
+            justify-content: center;
+        }
+    }
+    @else if $breakpoint=="lg" {
+        @include media-breakpoint-up(lg) {
+            justify-content: center;
+        }
+    }
+    @else if $breakpoint=="xl" {
+        @include media-breakpoint-up(xl) {
+            justify-content: center;
+        }
+    }
+    @else {
+        @warn "center mixin arg must be one of the existing breakpoints (#{$breakpoint-up-prefixes})";
+    }
+}
+
+@mixin end($breakpoint: "xs") {
+    @if $breakpoint=="xs" {
+        justify-content: flex-end;
+    }
+    @else if $breakpoint=="sm" {
+        @include media-breakpoint-up(sm) {
+            justify-content: flex-end;
+        }
+    }
+    @else if $breakpoint=="md" {
+        @include media-breakpoint-up(md) {
+            justify-content: flex-end;
+        }
+    }
+    @else if $breakpoint=="lg" {
+        @include media-breakpoint-up(lg) {
+            justify-content: flex-end;
+        }
+    }
+    @else if $breakpoint=="xl" {
+        @include media-breakpoint-up(xl) {
+            justify-content: flex-end;
+        }
+    }
+    @else {
+        @warn "end mixin arg must be one of the existing breakpoints (#{$breakpoint-up-prefixes})";
+    }
+}
+
+@mixin top($breakpoint: "xs") {
+    @if $breakpoint=="xs" {
+        align-items: flex-start;
+    }
+    @else if $breakpoint=="sm" {
+        @include media-breakpoint-up(sm) {
+            align-items: flex-start;
+        }
+    }
+    @else if $breakpoint=="md" {
+        @include media-breakpoint-up(md) {
+            align-items: flex-start;
+        }
+    }
+    @else if $breakpoint=="lg" {
+        @include media-breakpoint-up(lg) {
+            align-items: flex-start;
+        }
+    }
+    @else if $breakpoint=="xl" {
+        @include media-breakpoint-up(xl) {
+            align-items: flex-start;
+        }
+    }
+    @else {
+        @warn "top mixin arg must be one of the existing breakpoints (#{$breakpoint-up-prefixes})";
+    }
+}
+
+@mixin middle($breakpoint: "xs") {
+    @if $breakpoint=="xs" {
+        align-items: center;
+    }
+    @else if $breakpoint=="sm" {
+        @include media-breakpoint-up(sm) {
+            align-items: center;
+        }
+    }
+    @else if $breakpoint=="md" {
+        @include media-breakpoint-up(md) {
+            align-items: center;
+        }
+    }
+    @else if $breakpoint=="lg" {
+        @include media-breakpoint-up(lg) {
+            align-items: center;
+        }
+    }
+    @else if $breakpoint=="xl" {
+        @include media-breakpoint-up(xl) {
+            align-items: center;
+        }
+    }
+    @else {
+        @warn "middle mixin arg must be one of the existing breakpoints (#{$breakpoint-up-prefixes})";
+    }
+}
+
+@mixin bottom($breakpoint: "xs") {
+    @if $breakpoint=="xs" {
+        align-items: flex-end;
+    }
+    @else if $breakpoint=="sm" {
+        @include media-breakpoint-up(sm) {
+            align-items: flex-end;
+        }
+    }
+    @else if $breakpoint=="md" {
+        @include media-breakpoint-up(md) {
+            align-items: flex-end;
+        }
+    }
+    @else if $breakpoint=="lg" {
+        @include media-breakpoint-up(lg) {
+            align-items: flex-end;
+        }
+    }
+    @else if $breakpoint=="xl" {
+        @include media-breakpoint-up(xl) {
+            align-items: flex-end;
+        }
+    }
+    @else {
+        @warn "bottom mixin arg must be one of the existing breakpoints (#{$breakpoint-up-prefixes})";
+    }
+}
+
+@mixin around($breakpoint: "xs") {
+    @if $breakpoint=="xs" {
+        justify-content: space-around;
+    }
+    @else if $breakpoint=="sm" {
+        @include media-breakpoint-up(sm) {
+            justify-content: space-around;
+        }
+    }
+    @else if $breakpoint=="md" {
+        @include media-breakpoint-up(md) {
+            justify-content: space-around;
+        }
+    }
+    @else if $breakpoint=="lg" {
+        @include media-breakpoint-up(lg) {
+            justify-content: space-around;
+        }
+    }
+    @else if $breakpoint=="xl" {
+        @include media-breakpoint-up(xl) {
+            justify-content: space-around;
+        }
+    }
+    @else {
+        @warn "around mixin arg must be one of the existing breakpoints (#{$breakpoint-up-prefixes})";
+    }
+}
+
+@mixin between($breakpoint: "xs") {
+    @if $breakpoint=="xs" {
+        justify-content: space-between;
+    }
+    @else if $breakpoint=="sm" {
+        @include media-breakpoint-up(sm) {
+            justify-content: space-between;
+        }
+    }
+    @else if $breakpoint=="md" {
+        @include media-breakpoint-up(md) {
+            justify-content: space-between;
+        }
+    }
+    @else if $breakpoint=="lg" {
+        @include media-breakpoint-up(lg) {
+            justify-content: space-between;
+        }
+    }
+    @else if $breakpoint=="xl" {
+        @include media-breakpoint-up(xl) {
+            justify-content: space-between;
+        }
+    }
+    @else {
+        @warn "between mixin arg must be one of the existing breakpoints (#{$breakpoint-up-prefixes})";
+    }
+}
+
+@mixin first($breakpoint: "xs") {
+    @if $breakpoint=="xs" {
+        order: -1;
+    }
+    @else if $breakpoint=="sm" {
+        @include media-breakpoint-up(sm) {
+            order: -1;
+        }
+    }
+    @else if $breakpoint=="md" {
+        @include media-breakpoint-up(md) {
+            order: -1;
+        }
+    }
+    @else if $breakpoint=="lg" {
+        @include media-breakpoint-up(lg) {
+            order: -1;
+        }
+    }
+    @else if $breakpoint=="xl" {
+        @include media-breakpoint-up(xl) {
+            order: -1;
+        }
+    }
+    @else {
+        @warn "first mixin arg must be one of the existing breakpoints (#{$breakpoint-up-prefixes})";
+    }
+}
+
+@mixin last($breakpoint: "xs") {
+    @if $breakpoint=="xs" {
+        order: 1;
+    }
+    @else if $breakpoint=="sm" {
+        @include media-breakpoint-up(sm) {
+            order: 1;
+        }
+    }
+    @else if $breakpoint=="md" {
+        @include media-breakpoint-up(md) {
+            order: 1;
+        }
+    }
+    @else if $breakpoint=="lg" {
+        @include media-breakpoint-up(lg) {
+            order: 1;
+        }
+    }
+    @else if $breakpoint=="xl" {
+        @include media-breakpoint-up(xl) {
+            order: 1;
+        }
+    }
+    @else {
+        @warn "last mixin arg must be one of the existing breakpoints (#{$breakpoint-up-prefixes})";
+    }
+}
+
+// Mixin to run inside of for loop - creates col/breakpoint classes * Not for developer use *
+@mixin col-factory($thisPrefix, $separate:'') {
+    .col-#{$thisPrefix}__fill-auto {
+        flex: 1;
+        padding: 0 $spacing-unit;
+    }
+    .col-#{$thisPrefix}__auto {
+        width: auto;
+        max-width: none;
+        flex-basis: auto;
+        padding: 0 $spacing-unit;
+    }
+    @for $i from 1 through $num-cols {
+        $separate: '-';
+        $punto: '.';
+        .col-#{$thisPrefix}-#{$i} {
+            @include flex-basis(calc(100% / $num-cols) * $i);
+            max-width: calc(100% / $num-cols) * $i;
+            @if $i == 12 {
+                padding: 0;  
+            }
+            @else {
+                padding: 0 $spacing-unit;
+            }
+        }
+        .col-#{$thisPrefix}-off-set#{$i} {
+            margin-left: calc(100% / $num-cols) * $i;
+        }
+    }
+}
+
+@mixin flex-factory($guion,$thisPrefix) {
+    .flex#{$guion}#{$thisPrefix} {
+        display: flex !important;
+        &__inline {
+            display: inline-flex !important;
+        }
+        &__row {
+            flex-direction: row !important;
+        }
+        &__row--reverse {
+            flex-direction: row-reverse !important;
+        }
+        &__column {
+            flex-direction: column !important;
+        }
+        &__column-reverse {
+            flex-direction: column-reverse !important;
+        }
+        &__grow {
+            flex-grow: 1 !important;
+        }
+        &__justify-content-start {
+            justify-content: flex-start !important;
+        }
+        &__justify-content-center {
+            justify-content: center !important;
+        }
+        &__justify-content-snd {
+            justify-content: flex-end !important;
+        }
+        &__justify-content-around {
+            justify-content: space-around !important;
+        }
+        &__justify-content-between {
+            justify-content: space-between !important;
+        }
+        &__justify-content-evenly {
+            justify-content: space-evenly !important;
+        }
+        &__align-content-start {
+            align-content: flex-start !important;
+        }
+        &__align-content-center {
+            align-content: center !important;
+        }
+        &__align-content-end {
+            align-content: flex-end !important;
+        }
+        &__align-content-around {
+            align-content: space-around !important;
+        }
+        &__align-content-between {
+            align-content: space-between !important;
+        }
+        &__align-content-stretch {
+            align-content: stretch !important;
+        }
+        &__align-items-top {
+            align-items: flex-start !important;
+        }
+        &__align-items-middle {
+            align-items: center !important;
+        }
+        &__align-items-bottom {
+            align-items: flex-end !important;
+        }
+        &__align-items-stretch {
+            align-items: stretch !important;
+        }
+        &__align-items-baseline {
+            align-items: baseline !important;
+        }
+        &__align-items-self-start {
+            align-items: self-start !important;
+        }
+        &__align-items-self-end {
+            align-items: self-end !important;
+        }
+        &__align-self-start {
+            align-self: flex-start !important;
+        }
+        &__align-self-end {
+            align-self: flex-end !important;
+        }
+        &__align-self-center {
+            align-self: center !important;
+        }
+        &__align-self-baseline {
+            align-self: baseline !important;
+        }
+        &__align-self-stretch {
+            align-self: stretch !important;
+        }
+        &__first {
+            order: -1 !important;
+        }
+        &__last {
+            order: 1 !important;
+        }
+        &__justify-self-start-horizontal {
+            margin-right: auto !important;
+        }
+        &__justify-self-start-vertical {
+            margin-bottom: auto !important;
+        }
+        &__justify-self-end-horizontal {
+            margin-left: auto !important;
+        }
+        &__justify-self-end-vertical {
+            margin-top: auto !important;
+        }
+        &__wrap {
+            flex-wrap: wrap !important;
+        }
+        &__no-wrap {
+            flex-wrap: nowrap !important;
+        }
+    }
+}

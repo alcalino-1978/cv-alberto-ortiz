@@ -1,0 +1,8 @@
+
+/* ==========================================================================
+   #Z-INDEX - UTILITIES
+   ========================================================================== */
+
+   .u-zIndex {
+    @include generator-class-each($map-z-index, 'z-index', ' !important'); // result: .u-zIndex__sticky {}
+  }

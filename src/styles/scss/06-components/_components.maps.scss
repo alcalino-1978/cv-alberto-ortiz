@@ -1,0 +1,251 @@
+/* ==========================================================================
+   #MAPS-COMPONENT
+   ========================================================================== */
+
+.m-map {
+  padding: 0;
+  &__canvas {
+    position: relative;
+    height: 80vh;
+  }
+  &__wrapper {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 0;
+    transition: all $transition-duration $easing;
+    &.-bloodLeft {
+      left: 0;
+      transform: none;
+    }
+    &.-leftPanel {
+      &.-isOpen {
+        .a-trigger {
+          transform: scaleX(-1);
+        }
+        .m-map__triggerMobile {
+          transform: translateX(-50%) scale(3, -0.8);
+        }
+        @include media-breakpoint-down(lg) {
+          .m-navTabs {
+            max-height: 600px;
+            transition: max-height 1.5s ease-in-out;
+            transition-delay: 1ms;
+          }
+        }
+        .m-navTabs__content {
+          @include media-breakpoint-up(lg) {
+            margin-top: $spacing-sides;
+          }
+        }
+      }
+      @include media-breakpoint-down(lg) {
+        .m-navTabs.-isHideMobile {
+          max-height: 0;
+          display: flex;
+          overflow: hidden;
+          transition: max-height 2s ease-in-out;
+          transition-delay: -1.5s;
+        }
+        .m-navTabs__content {
+          display: none;
+        }
+      }
+      &.-isClose {
+        display: flex;
+        left: -42rem;
+        transform: none;
+        .a-trigger {
+          transform: scaleX(1);
+          right: -3.8rem;
+          border-top-right-radius: $border-radius;
+          border-bottom-right-radius: $border-radius;
+          padding: $spacing-unit;
+          box-shadow: $box-shadow;
+        }
+      }
+      .m-map__mainContent {
+        @include media-breakpoint-down(lg) {
+          border-top-left-radius: $border-radius * 2;
+          border-top-right-radius: $border-radius * 2;
+          padding-bottom: $spacing-unit;
+        }
+      }
+      .m-map__triggerMobile {
+        left: 50%;
+        transform: translateX(-50%) scale(3, 0.8);
+        right: auto;
+        color: $tabs;
+        top: 0.4rem;
+      }
+      .m-map__navHeader + .m-map__mainContent {
+        padding-top: $spacing-md;
+        @include media-breakpoint-up(lg) {
+          padding-top: $spacing-lg;
+        }
+      }
+    }
+    &.-rightPanel {
+      justify-content: flex-end;
+      transition: opacity $transition-duration $easing;
+      z-index: map-get($map: $map-z-index, $key: banner);
+      height: 100%;
+      &.-isClose {
+        @include media-breakpoint-up(lg) {
+          display: none;
+          opacity: 0;
+          overflow: hidden;
+        }
+        .m-map__mainContent {
+          display: none;
+        }
+      }
+      &.-isOpen {
+        @include media-breakpoint-up(lg) {
+          width: auto;
+          left: auto;
+          transform: none;
+          min-height: 48rem;
+        }
+      }
+      .m-map__mainContent {
+        padding: $spacing-sides;
+        max-height: 100%;
+        @include media-breakpoint-down(lg) {
+          height: 100%;
+        }
+        .a-trigger {
+          transform: scale(0.7);
+        }
+        @include media-breakpoint-down(lg) {
+          .m-clickToCall__title {
+            width: 100%;
+            margin: 0;
+          }
+        }
+      }
+      .a-trigger {
+        background-color: transparent;
+      }
+      .-multiRows {
+        > [class^="a-col"] {
+          flex-basis: 100%;
+          max-width: 100%;
+        }
+      }
+      #busqueda-avanzada {
+        overflow: auto;
+      }
+    }
+    @include media-breakpoint-down(lg) {
+      top: auto;
+      bottom: 0;
+      height: auto;
+      border-top-left-radius: $spacing-unit;
+      border-top-right-radius: $spacing-unit;
+    }
+    .a-trigger {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: $white;
+      display: flex;
+      align-items: center;
+    }
+  }
+  &__mainContent {
+    background-color: $white;
+    box-shadow: $box-shadow;
+    height: auto;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    @include media-breakpoint-up(lg) {
+      min-height: 21.7rem;
+      max-height: 80vh;
+      width: 42rem;
+    }
+  }
+  &__navHeader {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    padding: $spacing-unit;
+    margin: 0;
+    z-index: 1;
+    @include media-breakpoint-up(lg) {
+      background-color: $white;
+      width: 42rem;
+    }
+  }
+  .-multiRows {
+    @include media-breakpoint-down(lg) {
+      margin: 0;
+    }
+  }
+  &.-shortHeight {
+    height: 44rem;
+    .-shortHeight {
+      height: 44rem;
+    }
+    .m-map__mainContent {
+      max-height: 100%;
+    }
+  }
+}
+.m-map .m-map__wrapper.-rightPanel.-isOpen {
+  @include media-breakpoint-up(lg) {
+    height: 100%;
+    min-height: auto;
+  }
+}
+// Customization vacantes - resultado -busqueda
+.-resutadoBusqueda {
+  .m-map__canvas {
+    @include media-breakpoint-down(lg) {
+      display: none;
+    }
+  }
+  .m-map__wrapper {
+    @include media-breakpoint-down(lg) {
+      position: static;
+      transform: none;
+    }
+  }
+  .m-map__navHeader {
+    @include media-breakpoint-down(lg) {
+      display: none;
+    }
+  }
+}
+
+.m-secondaryNavMenu.-stickyDetail {
+  position: static;
+  transform: none;
+  opacity: 1;
+  &.-isSticky:after,
+  &:before {
+    display: none;
+  }
+  &.-isSticky {
+    position: fixed;
+    left: 0;
+    height: auto;
+    [class^="a-title"] {
+      font-size: $spacing-md;
+      padding-right: $spacing-sides * 10;
+    }
+    .a-sub {
+      font-size: 1.8rem;
+    }
+    > .m-row {
+      position: relative;
+    }
+    .a-button {
+      position: absolute;
+      top: $spacing-lg;
+      right: 0;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+/* ==========================================================================
+   #FLEX-UTILITIES
+   ========================================================================== */
+
+@include flex-factory('','');
+@for $i from 1 through length($breakpoint-up-prefixes) {
+    $thisprefix: nth($breakpoint-up-prefixes, $i);
+    
+    @if $thisprefix=="xs" {
+        @include flex-factory('-',$thisprefix);
+    }
+    
+    @else if $thisprefix=="sm" {
+        @include media-breakpoint-up(sm) {
+            @include flex-factory('-',$thisprefix);
+        }
+    }
+    
+    @else if $thisprefix=="md" {
+        @include media-breakpoint-up(md) {
+            @include flex-factory('-',$thisprefix);
+        }
+    }
+    
+    @else if $thisprefix=="lg" {
+        @include media-breakpoint-up(lg) {
+            @include flex-factory('-',$thisprefix);
+        }
+    }
+    
+    @else if $thisprefix=="xl" {
+        @include media-breakpoint-up(xl) {
+            @include flex-factory('-',$thisprefix);
+        }
+    }
+}
+
+.u-flex__separatorrow {
+    border-bottom: 1px solid $tabs !important;
+}

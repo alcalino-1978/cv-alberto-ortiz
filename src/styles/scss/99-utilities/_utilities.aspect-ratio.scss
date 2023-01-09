@@ -1,0 +1,16 @@
+/* ==========================================================================
+   #padding-top: aspect-ratio-UTILITIES
+   ========================================================================== */
+
+.u-aspectRatio {
+    position: relative;
+    &:before {
+      display: block;
+      content: "";
+    }
+    &__content {
+        width: 100%;
+    }
+}
+
+@include constructor-aspect-ratio(); // .u-relXs__16x9

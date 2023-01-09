@@ -1,0 +1,39 @@
+/* ==========================================================================
+   #NOTIFICATIONS-COMPONENTS
+   ========================================================================== */
+%notificationPush {
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid #fff;
+  border-radius: 100%;
+  background: $error;
+  position: absolute;
+  top: 0;
+  // top: 100%;
+  left: calc(96% - 1rem);
+  content: "";
+  color: $white;
+  font-size: $spacing-unit;
+  text-align: center;
+}
+.a-notificationPush {
+  &[class^="icon__"] {
+    position: relative;
+    &:after {
+      @extend %notificationPush;
+      top: calc(96% - 1rem);
+    }
+  }
+  &:not(i) {
+    @extend %notificationPush;
+    width: 1.8rem;
+    height: 1.8rem;
+    font-size: 1.2rem;
+    line-height: $spacing-sides;
+  }
+  &.-smallNotification {
+    @extend %notificationPush;
+    position: initial;
+    margin-left:.4rem;
+  }
+}

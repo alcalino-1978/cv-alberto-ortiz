@@ -1,0 +1,193 @@
+// color - variables
+$primary-color: #0079c8 !default;
+$navy: #00335b !default;
+$gray: #333333 !default;
+$warm-gray: #f1efeb !default;
+$white: #ffffff !default;
+$black: #000000 !default;
+$color-body:#323232;
+$purple: #6a2ca1 !default;
+$violet: #a4219b !default;
+$fuchsia: #c6007e !default;
+$burgundy: #942151 !default;
+$orange: #db3907 !default;
+$red: #d81e05 !default;
+$yellow: #ffc300 !default;
+$gold: #ae9962 !default;
+$teal: #008385 !default;
+$dark-green: #18542c !default;
+$green: #007a3d !default;
+$lime: #678004 !default;
+$table: #f5faff !default;
+$tabs: #dddddd !default;
+$tabs-cards: #eaeaea !default;
+$selected-area: #ecf6ff !default;
+$background-input: #f5f5f5 !default;
+$border-input: #bababa !default;
+$border-card-secondary: mix(white, $gray, 50%) !default;
+$border-secondary-button: #DDE1E6 !default;
+$border-check-radio: #cacaca !default;
+$primary: #0079c8 !default;
+$secondary: #00335b !default;
+$error: #d81e05 !default;
+$ok: #439135 !default;
+$info: $yellow !default;
+$alert: #635a15 !default;
+$bg-alert: #fdf6dd !default;
+$bg-error: #fcf1f0 !default;
+$bg-ok: #efffda !default;
+$bg-info: #dbf1fa !default;
+$background-226: #e2e2e3 !default;
+$background-229: #e5f2f9 !default;
+$background-230: #e6e6e6 !default;
+$background-240: #f0f0f0 !default;
+$background-247: #f7f7f7 !default;
+$background-disabled: #F2F5F7 !default;
+$disabled: #7F99AD !default;
+$facebook: #3b5998 !default;
+$tweeter: #39cdff !default;
+$youtube: #cc181e !default;
+$whatsapp: #3eb72b !default;
+$text-input: #666666 !default;
+
+$bg-body: #e4e4e4;
+$primary-color: #ff1616;
+$secondary-color: $navy;
+
+$map-tints: (
+  tint-100: 100%,
+  tint-75: 25%,
+  tint-50: 50%,
+  tint-25: 75%,
+  tint-15: 85%,
+  tint-5: 95%,
+  active: 30%
+);
+$map-colours: (
+  primary: (
+    "": $primary-color,
+    tint-100: mix(white, $primary-color, 0%),
+    tint-75: mix(white, $primary-color, 25%),
+    tint-50: mix(white, $primary-color, 50%),
+    tint-25: mix(white, $primary-color, 75%),
+    tint-15: mix(white, $primary-color, 85%),
+    tint10: mix(white, $primary-color, 90%),
+    tint-5: mix(white, $primary-color, 95%),
+    opacity-80: rgba($primary-color, $alpha: 0.8),
+    opacity-75: rgba($primary-color, $alpha: 0.75),
+    opacity-60: rgba($primary-color, $alpha: 0.6),
+    opacity-50: rgba($primary-color, $alpha: 0.5),
+    active: mix(black, $primary-color, 30%)
+  ),
+  secondary: (
+    "": $secondary-color,
+    tint100: mix(white, $secondary-color, 0%),
+    tint75: mix(white, $secondary-color, 25%),
+    tint50: mix(white, $secondary-color, 50%),
+    tint25: mix(white, $secondary-color, 75%),
+    tint15: mix(white, $secondary-color, 85%),
+    tint5: mix(white, $secondary-color, 95%),
+    opacity80: rgba($secondary-color, $alpha: 0.8),
+    opacity75: rgba($secondary-color, $alpha: 0.75),
+    opacity60: rgba($secondary-color, $alpha: 0.6),
+    opacity50: rgba($secondary-color, $alpha: 0.5),
+    active: mix(black, $secondary-color, 30%)
+  ),
+  info: (
+    "": $info,
+    tint100: mix(white, $info, 0%),
+    tint75: mix(white, $info, 25%),
+    tint50: mix(white, $info, 50%),
+    tint25: mix(white, $info, 75%),
+    tint15: mix(white, $info, 85%),
+    tint5: mix(white, $info, 95%),
+    opacity80: rgba($info, $alpha: 0.8),
+    opacity75: rgba($info, $alpha: 0.75),
+    opacity60: rgba($info, $alpha: 0.6),
+    opacity50: rgba($info, $alpha: 0.5),
+    active: mix(black, $info, 30%)
+  ),
+  white: (
+      "": $white,
+      opacity80: rgba($white, $alpha: 0.8),
+      opacity75: rgba($white, $alpha: 0.75),
+      opacity60: rgba($white, $alpha: 0.6),
+      opacity50: rgba($white, $alpha: 0.5)
+    ),
+  black: (
+      "": $black,
+      opacity80: rgba($black, $alpha: 0.8),
+      opacity75: rgba($black, $alpha: 0.75),
+      opacity60: rgba($black, $alpha: 0.6),
+      opacity50: rgba($black, $alpha: 0.5)
+    ),
+  interactions: (
+    alert: (
+      "":  $bg-alert,
+      tint-75: mix(white,  $bg-alert, 25%),
+      tint-50: mix(white,  $bg-alert, 50%),
+      tint-25: mix(white,  $bg-alert, 75%),
+      tint-15: mix(white,  $bg-alert, 85%),
+      tint-5: mix(white,  $bg-alert, 95%),
+      opacity-80: rgba( $bg-alert, $alpha: 0.8),
+      opacity-75: rgba( $bg-alert, $alpha: 0.75),
+      opacity-60: rgba( $bg-alert, $alpha: 0.6),
+      opacity-50: rgba( $bg-alert, $alpha: 0.5),
+      active: mix(black,  $bg-alert, 30%)
+    ),
+    alert-dark: $alert,
+    table: $table,
+    selected-area: $selected-area,
+    error: $bg-error,
+    ok: $bg-ok,
+    info: $bg-info
+  ),
+  background: (
+    226: $background-226,
+    229: $background-229,
+    230: $background-230,
+    240: $background-240,
+    247: $background-247,
+    body: $color-body,
+    tabs-cards: $tabs-cards,
+    input: $background-input,
+    transparent: transparent
+  ),
+  social: (
+    facebook: $facebook,
+    tweeter: $tweeter,
+    youtube: $youtube,
+    whatsapp: $whatsapp
+  )
+);
+$map-colours-borders: (
+  Primary:  $primary-color,
+  'Primary.-tint-25': mix(white, $primary-color, 75%),
+  Secondary: $gray,
+  SecondaryButton:$border-secondary-button,
+  Alert: $bg-alert,
+  Table: $table,
+  SelectedArea: $selected-area,
+  Error: $bg-error,
+  Ok: $bg-ok,
+  Info: $bg-info,
+  Tabs: $tabs,
+  CtaPrimary: $orange,
+  CtaSecundary: $fuchsia,
+  White: $white,
+  'White.-tint-50': rgba($white, $alpha: 0.5),
+  Black: $black,
+  Cards: $border-card-secondary,
+  DarkGreen: mix(white, $dark-green, 25%),
+);
+$map-button-colours: (
+  Primary: $primary,
+  Secondary: $secondary,
+  White: $white,
+  Error: $error,
+  Ok: $ok,
+  Info: $info,
+  Alert: $alert,
+  CtaPrimary: $orange,
+  CtaSecundary: $fuchsia
+);

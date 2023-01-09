@@ -1,0 +1,84 @@
+/* ==========================================================================
+   #CONTACT-COMPONENT
+   ========================================================================== */
+
+.m-clickToCall {
+  color: $secondary-color;
+  margin-bottom: $spacing-sides;
+  display: none;
+  @include media-breakpoint-up(lg) {
+    display: block;
+    margin-left: $spacing-sides;
+  }
+  &__title {
+    font-size: $base-font-size;
+    @include media-breakpoint-down(lg) {
+      width: calc(100% + #{$spacing-lg});
+      margin: 0 -#{$spacing-sides};
+    }
+    @include media-breakpoint-up(lg) {
+      font-size: 1.1rem;
+    }
+  }
+  &__telephone {
+    font-weight: 900;
+    @include media-breakpoint-up(lg) {
+      font-size: 2.2rem;
+    }
+    &.a-button {
+      border: 1px solid rgba(0, 119, 203, 0.25);
+      margin-bottom: $spacing-sides;
+      font-weight: 400;
+      .a-icon__contactLinear {
+        margin: 0;
+      }
+      span {
+        font-size: 1.3rem;
+      }
+    }
+  }
+  &__schedule {
+    //@extend %text__smaller;
+    @include media-breakpoint-up(lg) {
+      font-size: 0.8rem;
+      font-weight: 300;
+    }
+  }
+}
+
+.fancybox-inner {
+  .m-clickToCall {
+    display: none;
+  }
+  .m-clickToCall__title,
+  .m-clickToCall__schedule {
+    color: $secondary-color;
+  }
+  .m-clickToCall__schedule {
+    font-size: 81.25%;
+  }
+  .m-clickToCall__title {
+    font-size: 100%;
+  }
+  .m-callMeBack {
+    margin-top: 0;
+    padding-top: 0;
+  }
+}
+
+.m-callMeBack {
+  display: none;
+  &__telephone {
+    &.a-button {
+      border: 1px solid rgba(0, 119, 203, 0.25);
+      margin-bottom: $spacing-sides;
+      font-weight: 400;
+      .a-icon__contactLinear {
+        margin: 0;
+      }
+      span {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}

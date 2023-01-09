@@ -1,0 +1,69 @@
+///* ========================================================================
+//   #HIDDEN-VISUALLY
+//   ======================================================================== */
+
+// Mixin to quickly apply accessible hiding to elements.
+@mixin hidden-visually() {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  white-space: nowrap !important;
+  width: 1px !important;
+}
+
+// Mixin constructor hide and show class
+
+@mixin hide-show($class, $thisPrefix) {
+  &#{$thisPrefix} {
+    @if $class== "hide" {
+      display: none !important;
+    } @else {
+      display: block !important;
+    }
+  }
+}
+
+@mixin constructor-hide-show($class) {
+  .u-#{$class} {
+    @include hide-show($class, "");
+
+    @for $i from 1 through length($breakpoint-up-prefixes) {
+      $thisPrefix: nth($breakpoint-up-prefixes, $i);
+
+      @if $thisPrefix== "Xs" {
+        @include media-breakpoint-down(sm) {
+          @include hide-show($class, $thisPrefix);
+        }
+      } @else if $thisPrefix== "Sm" {
+        @include media-breakpoint-only(sm) {
+          @include hide-show($class, $thisPrefix);
+        }
+      } @else if $thisPrefix== "Md" {
+        @include media-breakpoint-only(md) {
+          @include hide-show($class, $thisPrefix);
+        }
+      } @else if $thisPrefix== "Lg" {
+        @include media-breakpoint-only(lg) {
+          @include hide-show($class, $thisPrefix);
+        }
+      } @else if $thisPrefix== "Xl" {
+        @include media-breakpoint-up(xl) {
+          @include hide-show($class, $thisPrefix);
+        }
+      } @else if $thisPrefix== "Mobile" {
+        @include media-breakpoint-down(lg) {
+          @include hide-show($class, $thisPrefix);
+        }
+      } @else if $thisPrefix== "Desktop" {
+        @include media-breakpoint-up(lg) {
+          @include hide-show($class, $thisPrefix);
+        }
+      }
+    }
+  }
+}

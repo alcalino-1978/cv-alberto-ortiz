@@ -1,0 +1,103 @@
+/* ==========================================================================
+#WIZARD-COMPONENT
+========================================================================== */
+
+.m-wizard__progressBar {
+    height: $spacing-unit;
+    background:$background-230;
+    position: relative;
+    &Start, &Finish {
+        z-index: 1;
+        position: absolute;
+        height: $spacing-unit*3;
+        width: $spacing-unit*3;
+        background:$background-230;
+        border-radius: 50%;
+        top:50%;
+        transform:translateY(-50%);
+        &.-active{
+            background: $primary-color;
+        }
+    }
+    &Start { 
+        left: -$spacing-unit;
+    }
+    &Finish {
+        right: -$spacing-unit;
+    }
+    &Active {
+        position: relative;
+        height: $spacing-unit;
+        background:$primary-color;
+        width:0%;
+        transition: .3s;
+        .m-wizard__stepsProgress{
+            position: absolute;
+            right: 0;
+            transform: translateX(50%);
+            top: $spacing-unit*2;
+            color:$gray;
+            font-size: 1.4rem;
+            white-space: nowrap;
+        }
+    }
+}
+
+.m-wizard__question {
+
+}
+
+.m-wizard__list {
+    width: 100%;
+    .m-wizard__label {
+        border: 2px solid #cacaca;
+        border-radius: $border-radius;
+        padding: 0.6rem;
+        width: 100%;
+        align-items: center;
+        &:hover {
+            background-color: $primary-color;
+            color: $white;
+            cursor: pointer;
+            .m-wizard__itemText {
+                color: $white;
+            }
+        }
+        &:before, &:after {
+            display: none;
+        }
+    }
+    input:checked + label.m-wizard__label {
+        background-color: $secondary-color;
+        color: $white;
+        &:hover {
+            background-color: $primary-color;
+        }
+        .m-wizard__itemText {
+            color: $white;
+        }
+    }
+}
+.m-wizard__item {
+    margin-bottom: $spacing-sides;
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+    &Text {
+        color: $primary-color;
+        font-size: 1.2rem;
+    }    
+    &Value {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        &.-typeSquare {
+            width: 3.6rem;
+            height: 3.6rem;
+            align-items: center;
+            background-color: #E6F2FA;
+            color: $secondary-color;
+            display: flex;
+        }
+    }
+}

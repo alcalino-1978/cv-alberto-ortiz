@@ -1,0 +1,51 @@
+/* ==========================================================================
+   #ICONS-COMPONENT
+   ========================================================================== */
+
+@import url("https://static.sanitas.es/sanitas-common-css/sanitas-common-css.min.css");
+
+@font-face {
+  font-display: block;
+  font-family: bupaicons_ds;
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://static.sanitas.es/sanitas-common-css/fonts/bupaicons_ds.woff2) format("woff2"),
+    url(https://static.sanitas.es/sanitas-common-css/fonts/bupaicons_ds.woff?v=2921) format("woff"),
+    url(https://static.sanitas.es/sanitas-common-css/fonts/bupaicons_ds.ttf?v=13d4) format("truetype");
+}
+
+[class^="icon__"] {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: $font-family-bupaicons;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 1;
+  speak: none;
+  text-transform: none;
+  position: relative;
+  &[class^="iconRounded"] {
+    padding: $spacing-unit;
+    border-radius: 50%;
+    display: flex;
+    &:before {
+      line-height: 1;
+    }
+  }
+  &.-iconRoundedLinear {
+    border: 1px solid $primary-color;
+    background-color: $white;
+  }
+}
+[class^="Rounded"] .a-notificationPush {
+  top: calc(96% - 1rem);
+}
+.-isActive .-iconRoundedLinear {
+  background-color: $primary-color;
+  color: $white;
+}
+
+i.-error:before {
+  color: $error;
+}

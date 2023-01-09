@@ -1,0 +1,33 @@
+/* ==========================================================================
+   #SCROLL-COMPONENTS
+   ========================================================================== */
+
+.a-scrollBackUp {
+    display: flex;
+    position: fixed;
+    bottom: $spacing-unit;
+    right: $spacing-unit;
+    z-index: map-get($map-z-index, sticky);
+    transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
+    opacity: 0;
+    visibility: hidden;
+    &.-onlyMobile {
+        @include media-breakpoint-up(lg) {
+            display: none;
+        }
+    }
+    &.-onlyDesktop {
+        @include media-breakpoint-down(lg) {
+            display: none;
+        }
+    }
+    &__icon {
+        border-radius: 50%;
+        padding: $spacing-unit;
+        filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.5));
+    }
+    &.-isShow {
+        opacity: 1;
+        visibility: visible;
+    }
+}

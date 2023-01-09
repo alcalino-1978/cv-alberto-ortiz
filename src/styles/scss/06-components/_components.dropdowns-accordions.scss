@@ -1,0 +1,345 @@
+/* ==========================================================================
+   #DROPDOWN-COMPONENT
+   ========================================================================== */
+
+.o-accordion {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  text-align: left;
+  &__item {
+    width: 100%;
+    padding: $spacing-md/2 $spacing-unit;
+    border-bottom: 1px solid $tabs;
+    display: flex;
+    align-items: center;
+    color: $primary-color;
+    font-size: $spacing-sides + $spacing-unit/4;
+    font-weight: bold;
+    text-align: left;
+    &:last-of-type,
+    &[aria-expanded="true"] {
+      border: none;
+    }
+    &.a-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding-right: $spacing-2xl;
+      .o-accordion__iconTrigger {
+        position: absolute;
+        right: $spacing-unit;
+      }
+    }
+  }
+  &__icon {
+    margin-right: $spacing-sides;
+    color: $secondary-color;
+  }
+  &__title {
+    font-size: 100%;
+    margin-bottom: 0;
+  }
+  &__iconTrigger {
+    margin-left: auto;
+    color: $secondary-color;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+  }
+  &__content {
+    width: 100%;
+    border-bottom: 1px solid $tabs;
+    padding: 0 $spacing-sides $spacing-sides $spacing-unit;
+    flex-direction: column;
+    &:last-of-type {
+      border: none;
+      //border-top: 1px solid $tabs;
+    }
+  }
+  &.-iconAccordion {
+    overflow: visible;
+    > .o-accordion__content {
+      padding-left: 5.6rem;
+    }
+  }
+  &.-simpleIcon {
+    .a-trigger.a-icon__arrowUp:before {
+      color: $secondary-color;
+    }
+    .a-trigger.a-icon__arrowUp:after {
+      background-color: transparent;
+      color: $secondary-color;
+    }
+  }
+}
+
+/*
+@keyframes dropdown-toggle {
+	0%   { opacity: 0; }
+	50%   { opacity: .3; }
+	100% { opacity: 1;}
+}
+.-isOpen {
+	animation:         dropdown-toggle 0.1s;
+} 
+*/
+
+.o-accordion__item.m-navTabs__tab {
+  @include media-breakpoint-down(lg) {
+    background-color: $background-240;
+    &.-isActive {
+      background-color: $primary-color;
+      color: $white;
+      .o-accordion__icon,
+      .o-accordion__iconTrigger {
+        color: $white;
+      }
+      .o-accordion__iconTrigger:after {
+        display: none;
+      }
+    }
+  }
+  @include media-breakpoint-up(lg) {
+    padding: 0 $spacing-unit;
+    width: auto;
+    border: none;
+    flex-direction: column;
+    align-items: normal;
+  }
+}
+.o-accordion__content.m-navTabs__content {
+  &.-isActive {
+    @include media-breakpoint-up(lg) {
+      display: block;
+    }
+  }
+}
+
+.a-trigger {
+  // padding: 0.5rem;
+  // font-size: $spacing-md/2;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  &.a-icon__arrowUp:before {
+    position: relative;
+    z-index: 1;
+    color: $white;
+  }
+  &.a-icon__arrowUp:after {
+    background-color: $secondary-color;
+    border-radius: 50%;
+    padding: 1rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    content: "";
+    z-index: 0;
+    ///margin-right: -0.5rem;
+  }
+  &.-bigSize {
+    font-size: 2rem;
+    color: $primary-color;
+    &.a-icon__arrowUp:after {
+      background-color: transparent;
+      border-radius: none;
+    }
+    &.a-icon__arrowUp:before {
+      color: $secondary-color;
+    }
+  }
+}
+
+.-uniformColor {
+  .a-trigger.a-icon__arrowUp:after {
+    display: none;
+  }
+}
+
+.a-dropDown__trigger {
+  right: $spacing-sides;
+  left: auto;
+}
+
+
+
+// viewmore
+
+.m-viewMore {
+  width: 100%;
+  &__item{
+    display: none;
+    margin-bottom: $spacing-sides;
+  }
+  &__content {
+    position: relative;
+    &.-gradient{
+      &.-isClose:before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        height: 12rem;
+        width: 100%;
+        display: block;
+        background: linear-gradient(180deg,hsla(0,0%,100%,0) 0,hsla(0,0%,100%,.49) 13%,#fff 82%,#fff 99%);
+        z-index: 1;         
+      }
+    }
+    &.-isClose {
+      display: flex;
+    }
+    &.-isOpen {
+      .m-viewMore__item {
+        display: flex;
+      }
+    }
+  }
+  &.-base3{
+    .m-viewMore__content {
+      &.-isClose {
+        .m-viewMore__item:nth-child(-n+3) {
+          display: flex;
+        }
+      }
+    }
+  }
+  &.-onlyMobile {
+    @include media-breakpoint-up (lg) {
+      .m-viewMore__item{
+        display: flex;
+      }
+    }
+  }
+}
+table.m-viewMore {
+  .m-viewMore__content {
+    &.-isClose,
+    &.-isOpen {
+      display: table-footer-group;
+      .m-viewMore__item {
+        display: table-row;
+      }
+    }
+  }
+}
+/* ELLIPSIS EFFECT IN PARAGRAPH */
+.m-ellipsis {
+  &.-onlyMobile {
+    display: block;
+    &.-clone {
+      display: none;
+    }
+    @include media-breakpoint-up(lg) {
+      + .-onlyMobile {
+        display: none;
+      }
+      &.-clone {
+        display: block;
+      }
+    }
+  }
+  .-moreEllipsis {
+    margin-left: $spacing-unit/2;
+    display: inline-block;
+  }
+}
+// replace select combos with dropdown menu
+
+.m-dropDown {
+  display: flex;
+  &__wrapper {
+    position: relative;
+  }
+  &__menu{
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
+      width: 11px;
+
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background-color: rgba(0, 0, 0, .2);
+      -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+      border:2px solid #fff;
+    }
+    min-width: 100%;
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0;
+    z-index: map-get($map-z-index, element);   
+    box-shadow: $box-shadow;
+    border-radius: $border-radius;
+    background-color: $white;
+    max-height: 30rem;
+    overflow-y: auto;
+    &__Title {
+      font-size: 90%;
+    }
+  }
+  &__menu, &__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  &__item {
+    flex-grow: 1 0 100%;
+    text-align: left;
+    font-size: inherit;
+    padding: $spacing-unit $spacing-sides;
+    // cursor: pointer; //si no es enlace no tiene mucho sentido que sea pointer
+    &.-isActive {
+      font-weight: bold;
+    }
+    &:hover {
+      background-color: $white;
+    }
+  }
+  &__link {    
+    color: $secondary-color;    
+  }
+  &__valueSelected {    
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;   
+  }
+  &.-filterBehaviour {
+    position: relative;
+  }
+  &.-selectAspect {
+    z-index: initial;
+    padding-left:4rem;
+    [class^="a-icon__"]:first-child {
+      position: absolute;
+      top: 0.2rem;
+      left: $spacing-unit;
+      font-size: $spacing-md;
+      line-height: $spacing-2xl;
+      z-index: 1;
+      color: $primary-color;
+    }
+    .m-dropDown__iconTrigger {
+      font-size: inherit;
+    }
+  }
+}
+
+// Component switch
+
+.m-switch {
+  width: 100%;
+  @include media-breakpoint-up(lg) {
+    width: auto;
+  }
+  .m-switch__trigger {
+    border-width: 1px;
+    @include media-breakpoint-down(md) {
+      width: 100%;
+      text-align: center;
+      justify-content: center;      
+    }
+    &.-isActive, &:hover {
+      background-color: $selected-area;
+    }
+  }
+}

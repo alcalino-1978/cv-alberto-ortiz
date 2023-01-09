@@ -1,0 +1,59 @@
+/* ==========================================================================
+   #UTILITIES FOR MODAL COOKIES ONE TRUST
+   ========================================================================== */
+body {
+    #onetrust {
+     &-consent-sdk {
+         background-color: rgba(0,0,0,0.5);
+         z-index: 1000;
+         position: fixed;
+         top: 0;
+         bottom: 0;
+         content: "";
+         left: 0;
+         right: 0;
+         #onetrust-accept-btn-handler {
+             margin: 0;
+             margin-bottom: 1.2rem;
+             background-color: #0079c8;
+             border-color: #0079c8;
+         }
+         
+         #onetrust-pc-btn-handler {
+             background-color: #0079c8;
+             border: #0079c8;
+             margin: 0;
+         }
+         #onetrust-banner-sdk {
+             top: 50%;
+             transform: translateY(-50%);
+             border-radius: 16px;
+             background-color: #ffffff;
+             color: #333333;
+             #onetrust-policy-text {
+                 color: #333;
+                 font-weight: 300;
+                 font-size: 1.6rem;
+             }            
+             #onetrust-button-group {
+                 display: flex;
+                 flex-direction: column;
+                 &-parent {
+                     padding-bottom: 45px;
+                 }            
+             }
+             #onetrust-policy {
+                 margin-top: 45px;
+             }            
+             a {
+                 color: #0079c8 !important;
+             }
+         }        
+     }    
+ }
+}
+
+
+
+
+

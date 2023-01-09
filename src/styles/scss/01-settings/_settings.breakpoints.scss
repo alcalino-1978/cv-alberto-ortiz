@@ -1,0 +1,27 @@
+// grid-breakpoints - variables
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+$grid-breakpoints: (xs: 0,
+sm: 64rem,
+md: 76.8rem,
+lg: 99.2rem,
+xl: 128rem,
+xxl: 144rem,
+xxxl: 190rem,
+) !default;
+
+
+@function em($pixels, $context: $base-font-size) {
+  @return calc($pixels / $context) * 1em;
+}
+
+
+$mediaqueries-breakpoints: (xs: 0,
+sm: em(map-get($grid-breakpoints, sm)),
+md: em(map-get($grid-breakpoints, md)),
+lg: em(map-get($grid-breakpoints, lg)),
+xl: em(map-get($grid-breakpoints, xxl)),
+xxl: em(map-get($grid-breakpoints, xxxl)),
+) !default;
+$breakpoint-up-prefixes: ("xs", "sm", "md", "lg", "xl", "mobile", "desktop");

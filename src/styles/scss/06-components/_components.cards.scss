@@ -1,0 +1,215 @@
+/* ==========================================================================
+   #CARDS-COMPONENTS
+   ========================================================================== */
+
+.m-cards {
+    display: flex;
+    flex-wrap: wrap;
+    //width: calc(100% + #{$spacing-md}); efectos extraños con los slider y en cols de momento en cuarentena
+    //margin: 0 -#{$spacing-md/2};
+    width: 100%;
+    *:focus{
+        outline: 0;
+    }
+    &__item {
+        padding: $spacing-md/2;
+        width: 100%;
+        display: flex;
+        &.-rel1x1 {
+            @include media-breakpoint-up(lg) {
+                aspect-ratio: 1;
+            }
+        }
+        &.-rel16x9 {
+            @include media-breakpoint-up(lg) {
+                aspect-ratio: 16 / 9;
+            }
+        }
+        &.-rel4x3 {
+            @include media-breakpoint-up(lg) {
+                aspect-ratio: 4 / 3;
+            }
+        }
+        &.-rel3x2 {
+            @include media-breakpoint-up(lg) {
+                aspect-ratio: 3 / 2;
+            }
+        }
+    }
+    &__title {
+        color: $secondary-color;
+        font-weight: bolder;
+    }
+    &__itemBox {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        // height: 100%;
+        justify-content: space-between;
+        background-color: $white;
+        box-shadow: $box-shadow;
+        border-radius: $border-radius;
+        text-align: center;
+        position: relative;
+        align-items: stretch;
+        >*:first-child {
+            border-top-left-radius: $border-radius;
+            border-top-right-radius: $border-radius;
+            overflow: hidden;
+        }
+        >*:last-child {
+            border-bottom-left-radius: $border-radius;
+            border-bottom-right-radius: $border-radius;
+            overflow: hidden;
+        }
+        &.-borderLeftCyan{
+            border-left:4px solid $primary-color;
+        }
+    }
+    &__header {
+        display: flex;
+        flex-direction: column;
+    }
+    &__mainContent {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+    &__bottomLink {
+        margin-top: auto;
+        &.-onBottom {
+            position: absolute;
+            bottom: -$spacing-sides;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        &.-circle {
+            padding: $spacing-unit;
+            width: $spacing-lg;
+            height: $spacing-lg;
+            line-height: 1;
+        }
+    }
+    &__promo {
+        display: flex;
+        margin-top: auto;
+    }
+    &.-onPrevious {
+        @include media-breakpoint-up(lg) {
+            margin-top: -($spacing-unit*10+$spacing-md);
+        }
+    }
+    &.m-navTabs {
+        flex-direction: row;
+        .m-navTabs__tab {
+            border-radius: $border-radius*2;
+            position: static;
+            .m-cards__itemBox {
+                border: 2px solid $white;
+                background-color: $tabs-cards;
+                @include poly-fluid-sizing('font-size', 't', 'Md');
+            }
+            &.-isActive {
+                .m-cards__itemBox {
+                    border: 2px solid $primary-color;
+                    background-color: $white;
+                }
+            }
+        }
+        .m-navTabs__linkTab {
+            padding: $spacing-sides;
+            margin: 0;
+            border-width: 2px;
+            border-bottom-width: 2px;
+            border-bottom-style: solid;
+            border-bottom-color: $tabs;
+            border-radius: $border-radius*2;
+            align-items: center;
+        }
+    }
+    // intersection with m-navTabs
+    &.m-navTabs__tab {}
+    &.o-slider {
+        justify-content: center;
+        margin: 0;
+    }
+    &.-allSlider {
+        &.tns-horizontal.tns-subpixel>.tns-item {
+            display: flex;
+        }
+        @include media-breakpoint-up(lg) {
+            flex-wrap: nowrap;
+        }
+    }
+    &.-tooltip {
+        .m-cards__item {
+            flex-direction: column;
+            &Box {
+                position: relative;
+            }
+        }
+        &.-positionTop {
+            .m-cards__itemBox {
+                &:after {
+                    content: '';
+                    border-style: solid;
+                    border-width: 10px 10px 0px 10px;
+                    border-color: $white transparent transparent transparent;
+                    position: absolute;
+                    left: $spacing-sides;
+                    bottom: -10px;
+                    z-index: 12;
+                }
+            }
+            .m-avatarUser {
+                margin-top: $spacing-sides;
+            }
+        }
+
+    }
+}
+
+.m-navTabs__content.m-cards__mainContent {
+    border: 0;
+}
+
+.m-cards {
+    .o-table{
+        td,
+        th {
+            &:first-of-type {
+                padding-left: 0;
+            }
+            &:last-of-type {
+                padding-right: 0;
+            }
+        }
+    }
+}
+
+//intersection m-navTabs with m-dropDown in mobile
+.m-navTabs__tab {
+    &.m-dropDown {
+        border-radius: 2px;
+        @include media-breakpoint-down(lg) {
+            &[aria-expanded="true"] {
+                background-color: #bfdef1;
+                .o-accordion__iconTrigger {
+                    &:before {
+                        color: $primary-color;
+                    }
+                    &:after {
+                        display: none;
+                    }
+                }
+            }
+            &[aria-expanded="false"] {
+                background-color: $primary-color;
+                color: $white;
+                .o-accordion__iconTrigger {
+                    color: $white;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,73 @@
+
+
+// function calculate aspect-ratio
+
+@function aspect-ratio($width, $height){
+  @return ($height / $width) * 100%;
+}
+
+@mixin aspect-ratio($prefix) {
+  .u-rel-#{$prefix}__17x9:before {
+      padding-top: aspect-ratio(17,9);
+  }
+  .u-rel-#{$prefix}__16x9:before {
+      padding-top: aspect-ratio(16,9);
+  }
+  .u-rel-#{$prefix}__11x4:before {
+      padding-top: aspect-ratio(11,4);
+  }
+  .u-rel-#{$prefix}__12x5:before {
+      padding-top: aspect-ratio(12,5);
+  }
+  .u-rel-#{$prefix}__4x3:before {
+      padding-top: aspect-ratio(4,3);
+  }
+  .u-rel-#{$prefix}__4x2:before {
+      padding-top: aspect-ratio(4,2);
+  }
+  .u-rel-#{$prefix}__3x2:before {
+      padding-top: aspect-ratio(3,2);
+  }
+  .u-rel-#{$prefix}__3x1:before {
+      padding-top: aspect-ratio(3,1);
+  }
+}
+
+@mixin constructor-aspect-ratio() {
+  @for $i from 1 through length($breakpoint-up-prefixes) {
+    $thisprefix: nth($breakpoint-up-prefixes, $i);
+    @if $thisprefix=="xs" {
+      @include aspect-ratio($thisprefix);
+    }
+
+    @else if $thisprefix=="sm" {
+      @include media-breakpoint-up(sm) {
+        @include aspect-ratio($thisprefix);
+      }
+    }
+
+    @else if $thisprefix=="md" {
+      @include media-breakpoint-up(md) {
+        @include aspect-ratio($thisprefix);
+      }
+    }
+
+    @else if $thisprefix=="lg" {
+      @include media-breakpoint-up(lg) {
+        @include aspect-ratio($thisprefix);
+      }
+    }
+
+    @else if $thisprefix=="xl" {
+      @include media-breakpoint-up(xl) {
+        @include aspect-ratio($thisprefix);
+      }
+    }
+
+    @else if $thisprefix=="xxl" {
+      @include media-breakpoint-up(xl) {
+        @include aspect-ratio($thisprefix);
+      }
+    }
+  }
+}

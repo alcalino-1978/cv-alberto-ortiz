@@ -1,0 +1,101 @@
+/* ==========================================================================
+   #TEXT-UTILITIES
+   ========================================================================== */
+
+
+/* force aligns */
+
+@include constructor-text-utilities("align"); // .text__left{}; .textxs__left
+
+/* text-tranforms */
+
+@include constructor-text-utilities("transform"); // .text__lowercase{}; .textxs__lowercase
+
+/* font-weight */
+
+@include constructor-text-utilities("weight"); // .text__bold{}; .textxs__bold
+
+/* font-weight */
+
+@include constructor-text-utilities("decoration"); // .text__decorationnone{}; .textxs__decorationunderline
+
+/* font-style */
+
+@include constructor-text-utilities("style"); // .text__italic{}; .textxs__italic
+
+/* white-space */
+
+@include constructor-text-utilities("white-space"); // .text__nowrap{}; .textxs__nowrap
+.truncate {
+    @include text-truncate();
+}
+
+.text__smaller,
+%text__smaller {
+    font-size: $text-small-percentage;
+}
+.text__smallest {
+    font-size: 1rem;
+}
+
+.text__line-break {
+    display: block;
+}
+
+.text__line-height-normal {
+    line-height: normal !important;
+}
+.text__line-height-1 {
+    line-height: 1 !important;
+}
+
+
+
+.test-size {
+    &__xxxl {
+        @include poly-fluid-sizing("font-size",
+        "t",
+        "xxxl",
+        $important);
+    }
+    &__xxl {
+        @include poly-fluid-sizing("font-size",
+        "t",
+        "xxl",
+        $important);
+    }
+    &__xl {
+        @include poly-fluid-sizing("font-size",
+        "t",
+        "xl",
+        $important);
+    }
+    &__lg {
+        @include poly-fluid-sizing("font-size",
+        "t",
+        "lg",
+        $important);
+    }
+    &__md {
+        @include poly-fluid-sizing("font-size",
+        "t",
+        "md",
+        $important);
+    }
+    &__sm {
+        @include poly-fluid-sizing("font-size",
+        "t",
+        "sm",
+        $important);
+    }
+    &__xs {
+        @include poly-fluid-sizing("font-size",
+        "t",
+        "xs",
+        $important);
+    }
+}
+
+.text__quotes {
+    quotes: "„" "“";
+}

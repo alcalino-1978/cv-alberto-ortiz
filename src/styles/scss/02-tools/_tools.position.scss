@@ -1,0 +1,53 @@
+// Usage
+// @include text-truncate();
+// Mixin constructor text-align
+@mixin position-utilities($type, $thisPrefix) {
+    &#{$thisPrefix}__#{$type} {
+        @if $type=="relative" {
+            position: relative !important;
+        }
+        @else if $type=="absolute" {
+            position: absolute !important;
+        }
+        @else if $type=="fixed" {
+            position: fixed !important;
+        }
+        @else if $type=="static" {
+            position: static !important;
+        }
+    }
+}
+
+@mixin constructor-position-utilities($type) {
+    .u-position {
+        @include position-utilities($type, '');
+        @for $i from 1 through length($breakpoint-up-prefixes) {
+            $thisPrefix: nth($breakpoint-up-prefixes, $i);
+            @if $thisPrefix=="Xs" {
+                @include media-breakpoint-down(sm) {
+                    @include position-utilities($type, $thisPrefix);
+                }
+            }
+            @else if $thisPrefix=="Sm" {
+                @include media-breakpoint-up(sm) {
+                    @include position-utilities($type, $thisPrefix);
+                }
+            }
+            @else if $thisPrefix=="Md" {
+                @include media-breakpoint-up(md) {
+                    @include position-utilities($type, $thisPrefix);
+                }
+            }
+            @else if $thisPrefix=="Lg" {
+                @include media-breakpoint-up(lg) {
+                    @include position-utilities($type, $thisPrefix);
+                }
+            }
+            @else if $thisPrefix=="Xl" {
+                @include media-breakpoint-up(xl) {
+                    @include position-utilities($type, $thisPrefix);
+                }
+            }
+        }
+    }
+}

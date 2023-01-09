@@ -1,0 +1,143 @@
+/* ==========================================================================
+#grid-flex-objects
+========================================================================== */
+
+.row {
+  @include row();
+  // in test
+  // margin-bottom: $spacing-md;
+  //  @include media-breakpoint-up(lg) {
+  //    margin-bottom: $spacing-xl;
+  // }
+  &:not(.row--multirows) > [class^="col"]:first-of-type {
+    padding-left: 0;
+    // @include media-breakpoint-down(lg) {
+    //   padding-right: 0;
+    // }
+  }
+  &:not(.row--multirows) > [class^="col"]:last-of-type {
+    padding-right: 0;
+    // @include media-breakpoint-down(lg) {
+    //   padding-left: 0;
+    // }
+  }
+  &.row--multirows {
+    margin-left: -#{$spacing-unit};
+    margin-right: -#{$spacing-unit};
+    width: auto;
+  }
+}
+@mixin -fullcontainer {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    &.tns-item {
+      @include media-breakpoint-down(lg) {
+        margin: 0;
+        left: auto;
+        right: auto;
+      }
+    }
+  }
+  
+.container {
+  margin: 0 auto;
+  width: 100%;
+  @include media-breakpoint-down(lg) {
+    padding: 0 $spacing-sides;
+  }
+  &.container--full {
+    @include -fullcontainer;
+    &mobile {
+      @include media-breakpoint-down(lg) {
+        @include -fullcontainer;
+      }
+    }
+    &desktop {
+      @include media-breakpoint-up(lg) {
+        @include -fullcontainer;
+      }
+    }
+  }
+  & &.container--full {
+    @include -fullcontainer
+  }
+}
+
+.container-full {
+  @include -fullcontainer;
+  &--mobile {
+    @include media-breakpoint-down(lg) {
+      @include -fullcontainer;
+    }
+  }
+  &--desktop {
+    @include media-breakpoint-up(lg) {
+      @include -fullcontainer;
+    }
+  }
+}
+
+
+.container > .row {
+  flex-direction: column;
+  background-color: $white;
+
+  @include media-breakpoint-up(lg) {
+    width: $width-row-container-lg;
+  }
+  // @include media-breakpoint-up(xl) {
+  //     width: $width-row-container-xl;
+  // }
+  @include media-breakpoint-up(xl) {
+    width: $width-row-container-xl;
+  }
+}
+
+.col {
+  @include col();
+}
+
+@include col-factory("", "");
+@for $i from 1 through length($breakpoint-up-prefixes) {
+  $thisprefix: nth($breakpoint-up-prefixes, $i);
+  @if $thisprefix== "xs" {
+    @include col-factory($thisprefix);
+  } @else if $thisprefix== "sm" {
+    @include media-breakpoint-up(sm) {
+      @include col-factory($thisprefix);
+    }
+  } @else if $thisprefix== "md" {
+    @include media-breakpoint-up(md) {
+      @include col-factory($thisprefix);
+    }
+  } @else if $thisprefix== "lg" {
+    @include media-breakpoint-up(lg) {
+      @include col-factory($thisprefix);
+    }
+  } @else if $thisprefix== "xl" {
+    @include media-breakpoint-up(xl) {
+      @include col-factory($thisprefix);
+    }
+  }
+}
+
+.col-gutter-lr {
+  padding: 0 $spacing-sides;
+}
+
+.col-no-gutter {
+  padding: 0;
+}
+.padding-sm,
+.padding-xs {
+  > .multi-rows {
+    @include media-breakpoint-down(sm) {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}

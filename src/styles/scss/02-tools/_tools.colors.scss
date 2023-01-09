@@ -1,0 +1,103 @@
+/// Returns the luminance of `$color` as a float (between 0 and 1)
+/// 1 is pure white, 0 is pure black
+/// @param {Color} $color - Color
+/// @return {Number}
+/// @link http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef Reference
+@function luminance($color) {
+    $colors: ( 'red': red($color), 'green': green($color), 'blue': blue($color));
+    @each $name,
+    $value in $colors {
+        $adjusted: 0;
+        $value: calc($value / 255);
+        @if $value < 0.03928 {
+            $value: calc($value / 12.92);
+        }
+        @else {
+            $value: calc(($value + 0.055) / 1.055);
+            $value: pow($value, 2);
+        }
+        $colors: map-merge($colors, ($name: $value));
+    }
+    @return (map-get($colors, 'red') * .2126)+(map-get($colors, 'green') * .7152)+(map-get($colors, 'blue') * .0722);
+}
+
+@mixin set-contrast-color($parentClass, $class, $value, $important:'') {
+    $ratio-luminance: luminance($value);
+    $threshold: 0.5;
+    @if $parentClass=='background-color' {
+        @if($ratio-luminance < $threshold) {
+            #{$class}: $white#{$important};
+        }
+        @else {
+            #{$class}: $gray#{$important};
+        }
+    }
+}
+
+@mixin color-generator($map, $attribute, $prefix, $separator, $optionalClass:'', $important:'') {
+    // $map: es el mapa de los colores
+    // $attribute: es el attributo css que estamos definiendo: background-color o color
+    // $prefix: es un espacio nulo que sino está no podríamos asociar un -tint al punto de la clase ya que da error
+    // $separator: el separador que en este caso es __
+    // $optionalClass: Por defecto es vacío en las clases color y en bgColor es un parámetro que define la propiedad color en la función set-contrast-color
+    // $important: no es necesario poner esto, habría que ver si se tiene que eliminar
+    @each $name,
+    $semantic in $map {
+        &-#{"" + $name} {
+            @each $color,
+            $tone in $semantic {
+                @if $color != '' {
+                    $separator: '__';
+                    // @debug $color $separator;
+                } @else {
+                    $separator: '';
+                    // @debug $color $separator;
+                }
+                &#{$separator}#{"" + $color} {
+                    @if ($name == 'interactions'){
+                    } @else {
+                        @if type-of($tone)==map {
+                            @each $key,
+                            $value in $tone {
+                                    @if $key=='' {
+                                        &#{$key} {                                        
+                                            #{$attribute}: $value !important;
+                                            @include set-contrast-color($attribute, $optionalClass, $value);
+                                            &.uniform-color * {
+                                                // bgcolor
+                                                color: inherit;
+                                            }
+                                            &.bg-Transparent {
+                                                // bgcolor
+                                                background-color: rgba($value, .65) !important;
+                                            }
+                                        }
+                                    }
+                                    @else {
+                                        &.#{$prefix}-#{$key} { // tint colours
+                                            #{$attribute}: $value !important;
+                                            @include set-contrast-color($attribute, $optionalClass, $value);
+                                            &.uniform-color * {
+                                                // color
+                                                color: inherit;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        @else {
+                            #{$attribute}: $tone !important;
+                            @include set-contrast-color($attribute, $optionalClass, $tone);
+                            @if $color == '' {
+                                &.uniform-color * {
+                                    // bgcolor
+                                    color: inherit;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,15 @@
+.m-bulletPagination {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    &-item {
+        width: $spacing-unit*1.5;
+        height: $spacing-unit*1.5;
+        border-radius: 50%;
+        margin-right: $spacing-unit; 
+        background: mix(white, $secondary-color, 75%);
+        &.-active{
+            background: $secondary-color
+        }
+    }
+}

@@ -1,0 +1,7 @@
+@mixin generator-class-each($map, $property, $important) {
+  @each $value, $key in $map {
+      &__#{$value} {
+          #{$property}: $key#{$important};
+      }
+  }
+}

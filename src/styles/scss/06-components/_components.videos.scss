@@ -1,0 +1,179 @@
+/* ==========================================================================
+   #VIDEO-COMPONENT
+   ========================================================================== */
+
+.m-videoComponent {
+  background-color: #000;
+  &__image {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+  }
+  &.-gallery {
+    @include media-breakpoint-up(lg) {
+      .u-aspectRatio__content {
+        padding-left: 31.6rem;
+      }
+
+      .u-aspectRatio__content .a-buttonPlay {
+        left: calc(50%);
+        transform: translate(calc(-50% + 15rem), -50%);
+      }
+    }
+    &.-positionRight {
+      .m-banner__media {
+        @include media-breakpoint-down(md) {
+          &.-static {
+            position: static;
+            display: flex;
+            position: relative;
+          }
+        }
+        .m-videoComponent__image {
+          @include media-breakpoint-down(md) {
+            position: static;
+            transform: none;
+          }
+        }
+        .a-buttonPlay {
+          @include media-breakpoint-down(md) {
+            z-index: 1;
+          }
+        }
+      }
+      .m-thumbnail {
+        @include media-breakpoint-down(md) {
+          width: 100%;
+          position: static;
+        }
+        @include media-breakpoint-up(md) {
+          right: 0;
+        }
+      }
+      @include media-breakpoint-up(md) {
+        .u-aspectRatio__content {
+          padding-left: 0;
+          padding-right: 31.6rem;
+        }
+        .u-aspectRatio__content .a-buttonPlay {
+          left: calc(50%);
+          transform: translate(calc(-50% - 7.5rem), -50%);
+        }
+      }
+    }
+  }
+  @include media-breakpoint-down(lg) {
+    [class^="a-title"] {
+      // font-size: $spacing-sides;
+      position: absolute;
+      top: $spacing-sides;
+    }
+  }
+}
+
+.a-buttonPlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: $white;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    background-color: $primary-color;
+    z-index: -1;
+  }
+  &.-positionBottom {
+    @include media-breakpoint-down(lg) {
+      bottom: $spacing-sides;
+      top: auto;
+      transform: translate(-50%, 0);
+    }
+  }
+  [class^="a-icon"] {
+    @include poly-fluid-sizing("font-size", "another", null, null, $spacing-xl, $spacing-unit * 17); // 3.2rem 13.6rem
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+    &.-lite {
+      @include poly-fluid-sizing("font-size", "another", null, null, $spacing-lg, $spacing-unit * 17); // 6.4rem 13.6rem      
+    }
+  }
+  &.-viewMore {
+    border-radius: 50%;
+    padding: 12px;
+    line-height: 1;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
+    &:after {
+      display: none;
+    }
+    [class^="a-icon"]{
+      text-shadow: none;
+    }
+  }
+}
+
+.m-thumbnail {
+  position: absolute;
+  width: 30rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  &__item {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  &__title {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    padding: 0.4rem 0.8rem;
+    text-align: left;
+    color: $white;
+    margin: 0;
+  }
+
+  &__image {
+    width: auto;
+  }
+  &__buttonPlay.a-buttonPlay .a-icon__play {
+    font-size: $spacing-xl;
+  }
+  &.-galleryListVertical {
+    padding: $spacing-md;
+    background-color: $white;
+    @include media-breakpoint-up(md) {
+      overflow-y: scroll;
+      padding: 0;
+    }
+    @include media-breakpoint-up(lg) {
+      width: 35rem;
+    }
+    .m-thumbnail__item {
+      background-color: $white;
+      height: auto;
+      overflow: initial;
+      padding-bottom: $spacing-md;
+      align-items: end;
+      font-size: 1.4rem;
+      &:last-of-type {
+        padding: 0;
+      }
+    }
+    .m-thumbnail__title {
+      background-color: transparent;
+      color: $color-body;
+      padding: 0;
+    }
+    .m-thumbnail__image {
+      width: 100%;
+    }
+  }
+}

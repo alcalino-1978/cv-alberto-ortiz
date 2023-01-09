@@ -1,0 +1,27 @@
+
+/* ==========================================================================
+   #BROWSER-COMPONENT
+   ========================================================================== */
+
+.m-search {
+    &__button {
+        display: flex;
+        width: 5.2rem;
+        height: 5.2rem;
+        justify-content: center;
+        align-items: center;
+        &Icon:before {
+            margin-left: $spacing-unit;
+        }
+    }
+    &__dropDown {
+        height: 33vh;
+        overflow-y: scroll;
+    }
+}
+input.m-search__field {
+    width: 100%;
+    &:focus {
+        outline: transparent;
+    }
+}

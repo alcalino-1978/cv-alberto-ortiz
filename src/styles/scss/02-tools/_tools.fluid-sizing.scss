@@ -1,0 +1,228 @@
+/// poly-fluid-sizing
+/// generate linear interpolated size values through multiple break points
+/// @param $property - a string css property name
+/// @param $map - a sass map of viewport unit and size value pairs
+/// @requires function linear-interpolation
+/// @requires function map-sort
+/// @example
+///   @include poly-fluid-sizing('font-size', (576px: 22px, 768px: 24px, 992px: 34px));
+/// @author jake wilson <jake.e.wilson@gmail.com>
+/// @author fork alberto ortiz <alcalino_78@hotmail.com>
+@mixin poly-fluid-sizing($property, $map, $size, $important: null, $min: null, $max: null) {
+    // if to set maps according to type property css
+    // @include poly-fluid-sizing('font-size', 'sub', 'xxl');
+    @if $map=="title" {
+        $map: (map-get($grid-breakpoints, sm): map-deep-get($map-fluid-sizing, $size, "title", "min"), map-get($grid-breakpoints, lg): map-deep-get($map-fluid-sizing, $size, "title", "max"));
+    }
+    @else if $map=="sub" {
+        $map: (map-get($grid-breakpoints, sm): map-deep-get($map-fluid-sizing, $size, "sub", "min"), map-get($grid-breakpoints, lg): map-deep-get($map-fluid-sizing, $size, "sub", "max"));
+    }
+    @else if $map=="t" {
+        $map: (map-get($grid-breakpoints, sm): map-deep-get($map-fluid-sizing, $size, "t", "min"), map-get($grid-breakpoints, lg): map-deep-get($map-fluid-sizing, $size, "t", "max"));
+    }
+    @else if $map=="spacing" {
+        $map: (map-get($grid-breakpoints, sm): map-deep-get($map-fluid-sizing, $size, "spacing", "min"), map-get($grid-breakpoints, lg): map-deep-get($map-fluid-sizing, $size, "spacing", "max"));
+    }
+    @else if $map=="another" {
+        $map: (map-get($grid-breakpoints, sm): $min, map-get($grid-breakpoints, lg): $max);
+        //@warn $map;
+    }
+    // get the number of provided breakpoints
+    $length: length(map-keys($map));
+    // error if the number of breakpoints is < 2
+    @if ($length < 2) {
+        @error "poly-fluid-sizing() $map requires at least values"
+    }
+    // sort the map by viewport width (key)
+    $map: map-sort($map);
+    $keys: map-keys($map);
+    // minimum size
+    #{$property}: map-get($map, nth($keys, 1))$important;
+    // interpolated size through breakpoints
+    @for $i from 1 through ($length - 1) {
+        @media (min-width: map-get($mediaqueries-breakpoints, sm)) {
+            #{$property}: linear-interpolation((nth($keys, $i): map-get($map, nth($keys, $i)), nth($keys, ($i+1)): map-get($map, nth($keys, ($i + 1)))))$important;
+        }
+    }
+    // maximum size
+    @media (min-width:map-get($mediaqueries-breakpoints, lg)) {
+        #{$property}: map-get($map, nth($keys, $length))$important;
+    }
+}
+
+/// linear-interpolation
+/// calculate the definition of a line between two points
+/// @param $map - a sass map of viewport widths and size value pairs
+/// @returns a linear equation as a calc() function
+/// @example
+///   font-size: linear-interpolation((320px: 18px, 768px: 26px));
+/// @author jake wilson <jake.e.wilson@gmail.com>
+@function linear-interpolation($map) {
+    $keys: map-keys($map);
+    @if (length($keys) !=2) {
+        @error "linear-interpolation() $map must be exactly 2 values";
+    }
+    // the slope
+    $m: calc((map-get($map, nth($keys, 2)) - map-get($map, nth($keys, 1))) / (nth($keys, 2) - nth($keys, 1)));
+    // the y-intercept
+    $b: map-get($map, nth($keys, 1)) - $m * nth($keys, 1);
+    // determine if the sign should be positive or negative
+    $sign: "+";
+    @if ($b < 0) {
+        $sign: "-";
+        $b: abs($b);
+    }
+    @return calc(#{$m*100}vw #{$sign} #{$b});
+}
+
+@mixin no-margin-padding($class, $thisPrefix, $no) {
+    .#{$no} {
+        @if ($thisPrefix != '') {
+            &-#{$thisPrefix} {
+                #{$class}: 0 !important;
+            }
+            &-top-#{$thisPrefix} {
+                #{$class}-top: 0 !important;
+            }
+            &-right-#{$thisPrefix} {
+                #{$class}-right: 0 !important;
+            }
+            &-bottom-#{$thisPrefix} {
+                #{$class}-bottom: 0 !important;
+            }
+            &-left-#{$thisPrefix} {
+                #{$class}-left: 0 !important;
+            }
+            &-vertical-#{$thisPrefix} {
+                #{$class}-top: 0 !important;
+                #{$class}-bottom: 0 !important;
+            }
+            &-horizontal-#{$thisPrefix} {
+                #{$class}-left: 0 !important;
+                #{$class}-right: 0 !important;
+            }
+        } @else {
+            &#{$thisPrefix} {
+                #{$class}: 0 !important;
+            }
+            &-top#{$thisPrefix} {
+                #{$class}-top: 0 !important;
+            }
+            &-right#{$thisPrefix} {
+                #{$class}-right: 0 !important;
+            }
+            &-bottom#{$thisPrefix} {
+                #{$class}-bottom: 0 !important;
+            }
+            &-left#{$thisPrefix} {
+                #{$class}-left: 0 !important;
+            }
+            &-vertical#{$thisPrefix} {
+                #{$class}-top: 0 !important;
+                #{$class}-bottom: 0 !important;
+            }
+            &-horizontal#{$thisPrefix} {
+                #{$class}-left: 0 !important;
+                #{$class}-right: 0 !important;
+            }
+        }
+    }
+}
+
+//set constructor of padding and margin according to poly-fluid-sizing
+@mixin config-padding-margin($class, $thisPrefix) {
+    .#{$class} {
+        &__#{$thisPrefix} {
+            @include poly-fluid-sizing($class, 'spacing', $thisPrefix, $important: !important);
+        }
+        &-top__#{$thisPrefix} {
+            @include poly-fluid-sizing(#{$class}-top, 'spacing', $thisPrefix, $important: !important);
+        }
+        &-right__#{$thisPrefix} {
+            @include poly-fluid-sizing(#{$class}-right, 'spacing', $thisPrefix, $important: !important);
+        }
+        &-bottom__#{$thisPrefix} {
+            @include poly-fluid-sizing(#{$class}-bottom, 'spacing', $thisPrefix, $important: !important);
+        }
+        &-left__#{$thisPrefix} {
+            @include poly-fluid-sizing(#{$class}-left, 'spacing', $thisPrefix, $important: !important);
+        }
+        &-vertical__#{$thisPrefix} {
+            @include poly-fluid-sizing(#{$class}-top, 'spacing', $thisPrefix, $important: !important);
+            @include poly-fluid-sizing(#{$class}-bottom, 'spacing', $thisPrefix, $important: !important);
+        }
+        &-horizontal__#{$thisPrefix} {
+            @include poly-fluid-sizing(#{$class}-left, 'spacing', $thisPrefix, $important: !important);
+            @include poly-fluid-sizing(#{$class}-right, 'spacing', $thisPrefix, $important: !important);
+        }
+    }
+}
+
+@mixin constructor-padding-margin($class, $no) {
+    @if $no == '' {
+        .#{$class} {
+            @include poly-fluid-sizing($class, 'spacing', 'md', $important: !important);
+        }
+    }
+    @else {
+        @include no-margin-padding($class, '', $no);
+    }
+    
+    @for $i from 1 through length($breakpoint-up-prefixes) {
+        $thisPrefix: nth($breakpoint-up-prefixes, $i);
+        @if $thisPrefix=="xs" {
+            @if $no == '' {
+                @include config-padding-margin($class, $thisPrefix);
+            } @else {
+                @include media-breakpoint-down(sm) {
+                    @include no-margin-padding($class, $thisPrefix, $no);
+                }
+            }
+        }
+        @else if $thisPrefix=="sm" {
+            @if $no == '' {
+                @include config-padding-margin($class, $thisPrefix);
+            } @else {
+                @include media-breakpoint-between(sm, md) {
+                    @include no-margin-padding($class, $thisPrefix, $no);
+                }
+            }
+        }
+        @else if $thisPrefix=="md" {
+            @if $no == '' {
+                @include config-padding-margin($class, $thisPrefix);
+            } @else {
+                @include media-breakpoint-between(md, lg) {
+                    @include no-margin-padding($class, $thisPrefix, $no);
+                }
+            }
+        }
+        @else if $thisPrefix=="lg" {
+            @if $no == '' {
+                @include config-padding-margin($class, $thisPrefix);
+            } @else {
+                @include media-breakpoint-between(lg, xl) {
+                    @include no-margin-padding($class, $thisPrefix, $no);
+                }
+            }
+        }
+        @else if $thisPrefix=="xl" {
+            @if $no == '' {
+                @include config-padding-margin($class, $thisPrefix);
+            } @else {
+                @include media-breakpoint-between(xl, xxl) {
+                    @include no-margin-padding($class, $thisPrefix, $no);
+                }
+            }
+        }
+        @else if $thisPrefix=="xxl" {
+            @if $no == '' {
+                @include config-padding-margin($class, $thisPrefix);
+            } @else {
+                @include media-breakpoint-up(#{$thisPrefix}) {
+                    @include no-margin-padding($class, $thisPrefix, $no);
+                }
+            }
+        }
+    } 
+}

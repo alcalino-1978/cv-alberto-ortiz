@@ -1,0 +1,65 @@
+/* ==========================================================================
+   #FLEX-UTILITIES
+   ========================================================================== */
+
+@include flex-factory('');
+@for $i from 1 through length($breakpoint-up-prefixes) {
+    $thisPrefix: nth($breakpoint-up-prefixes, $i);
+    
+    @if $thisPrefix=="Xs" {
+        @include media-breakpoint-down(sm) {
+            @include flex-factory($thisPrefix);
+        }
+    }
+    
+    @else if $thisPrefix=="Sm" {
+        @include media-breakpoint-up(sm) {
+            @include flex-factory($thisPrefix);
+        }
+    }
+    
+    @else if $thisPrefix=="Md" {
+        @include media-breakpoint-up(md) {
+            @include flex-factory($thisPrefix);
+        }
+    }
+    
+    @else if $thisPrefix=="Lg" {
+        @include media-breakpoint-up(lg) {
+            @include flex-factory($thisPrefix);
+        }
+    }
+    
+    @else if $thisPrefix=="Xl" {
+        @include media-breakpoint-up(xl) {
+            @include flex-factory($thisPrefix);
+        }
+    }
+}
+
+.u-flex {
+    &__onlyMobile{
+        @include media-breakpoint-down(lg) {
+            display: flex !important;
+        }
+    }
+    &__onlyDesktop{
+        @include media-breakpoint-up(lg) {
+            display: flex !important;
+        }
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    .u-flex__firstMobile {
+        order: -1 !important;
+    }
+}
+@include media-breakpoint-up(lg) {
+    .u-flex__firstDesktop {
+        order: -1 !important;
+    }
+}
+.u-flex__separatorRow {
+    border-bottom: 1px solid $tabs !important;
+}

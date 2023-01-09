@@ -1,0 +1,245 @@
+.o-searchBox{
+    width: 100%;
+    &__recent {
+        background: $secondary-color;
+        @include media-breakpoint-up(lg){
+            padding: 2.4rem;
+        }
+        .a-button {
+            margin-right: 8px;
+            margin-bottom:8px;
+            &:hover {
+                background: $primary-color;
+            }
+        }
+    }
+    .m-navTabs__tab {
+        font-size: 1.6rem;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        padding: $spacing-sm;
+        border: 1px solid $tabs;
+        background: $background-240;
+        color: $secondary-color;
+        margin: 0 $spacing-xs/4;
+        border-radius: 4px 4px 0 0;
+        &.-isActive {
+            background: $primary-color;
+            color: $white;
+            border-color: $primary-color;
+        }
+        &:first-of-type {
+            margin-left: 0;
+        }
+        &:last-of-type {
+            margin-right: 0;
+        }
+    }
+    .m-navTabs__content {
+        background: linear-gradient(180deg, #0077CB 0%, #004073 100%);
+        color: $white;
+        padding: $spacing-md;
+        border:none;
+        .o-searchBox__recent{ 
+            margin:2.4rem -2.4rem -2.4rem -2.4rem ;
+        }
+    }
+}
+
+.o-resultsList {
+    background-color: $white;
+    border-radius: $border-radius*4;
+    margin-bottom: 32px;
+    border: 1px solid $tabs;
+    overflow: hidden;
+    @include media-breakpoint-down(lg){
+        margin:16px -8px ;
+    }
+    &Header {
+        display: flex;
+        padding: $spacing-sm;
+        background: $background-247;
+        border-bottom: 1px solid $tabs;
+    }
+    .m-list {
+        padding-bottom: 32px;
+        border-bottom: 1px solid $tabs;
+        margin: 0 16px 0 16px;
+        &:last-child {
+            border-bottom:none;
+        }
+        @include media-breakpoint-up(lg){
+            margin: 0 16px 0 80px;
+        }
+        .a-button{
+            @include media-breakpoint-down(lg){
+                padding:1.1rem .8rem;
+                [class^="a-icon__"]:first-child{
+                    margin-right:.4rem;
+                    font-size: 2rem;
+                }
+            }
+
+        }
+    }
+    &.-mapDetails {
+        position:absolute;
+        width: 36rem;
+        box-shadow: 0 2px 16px 0 rgba(0,0,0,0.5);
+        z-index: map-get($map-z-index, element);
+        @include media-breakpoint-down(lg){
+            bottom:-100%!important;
+            left: 0!important;
+            top:auto!important;
+            width:100%;
+            margin: 0;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            transition:.5s;
+            padding-bottom:1.6rem;
+            &.-active {
+                bottom:0!important;
+            }
+            &.-positionTop {
+                top: $spacing-unit*4 !important;
+                bottom: auto !important;
+                left: 50% !important;
+                transform: translateX(-50%);
+                padding: 0;
+                border-radius: $spacing-sides;
+                width: calc(100% - 1.6rem);
+            }
+        }
+        .a-button {
+            padding: .8rem;
+            i {
+                font-size:2rem;
+                margin-right:.4rem;
+            }
+        }
+    } 
+}
+
+.m-selectBeneficiary {
+    cursor: pointer;
+    &.-liteBeneficiary{
+        position: relative;
+        i {
+            position: absolute;
+            background:$white;
+            border-radius: 50%;
+            width:$spacing-unit*2;
+            height:$spacing-unit*2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            right: 10%;
+            bottom: 0;
+            &:before {
+                color: $primary-color;
+                font-size: $spacing-unit;
+                line-height: normal;  
+            }
+        }
+    }
+    .m-dropDown__menu {
+        @include media-breakpoint-up(lg){
+            min-width:30rem;
+        }
+        height: auto;
+        top: calc(100% + 5px);
+        li {
+            display: flex;
+            align-items: center;
+            &:not(:last-child){
+                border-bottom:1px solid $tabs;
+            }
+            .m-avatar__image {
+                width: 4rem;
+                height: 4rem;
+            }
+        }
+    }
+}
+
+.m-map__resultList {
+    @include media-breakpoint-down(lg){
+        .m-map__canvas{
+            height: calc(100vh - 40px/*header height*/);
+        }
+    }    
+    .m-map__wrapper.-leftPanel{
+        .m-map__filters{
+            position: absolute;
+            background: $white;
+            width: 36rem;
+            z-index: map-get($map-z-index, element);
+            .m-map__filtersContent{
+                height: 80vh;
+                overflow-y: auto;
+                padding: $spacing-unit*2;
+                padding-bottom: 8rem;
+            }
+            .m-map__filtersButton{
+                position: absolute;
+                bottom:0;
+                left: 0;
+                right: 0;
+                padding: $spacing-unit*2;
+                background: $white;
+            }
+        }
+        .m-map__navHeader{
+            border-bottom:1px solid $tabs;
+            + .m-map__mainContent{
+                padding-top: 5.2rem;
+            }
+        }
+        .m-map__mainContent{
+            height: 80vh;
+        }
+        .a-trigger {
+            right:-3.8rem;
+            border-radius:  .4rem;
+        }
+        &.-noFilters {
+            .m-map__navHeader{
+                padding: 0;
+                + .m-map__mainContent{
+                    padding-top: 0;
+                }
+            }
+        }
+    }
+    .m-map__layerWrapper{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        .a-closeTarget {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    }
+}
+
+.m-detailsTitle {
+    padding-right:$spacing-unit*4;
+    position: relative;
+    .a-fav {
+        user-select: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        i{
+            font-size: $spacing-unit*3;
+            color: $primary-color;
+            opacity: .8;
+            cursor:pointer;
+        }
+    }
+}

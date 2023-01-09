@@ -1,0 +1,43 @@
+/* ==========================================================================
+   #IE - STYLES
+   ========================================================================== */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  body {
+    display: block;
+  }
+  li {
+    list-style-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7);
+  }
+  div,
+  [class^="a-title"],
+  p,
+  [class^="a-sub"] {
+    width: 100%;
+  }
+  .o-table tr {
+    display: table-row;
+  }
+  .o-mainHeader__navWrapper {
+    width: auto;
+  }
+  .u-flex__flexColumn > [class^="a-col"],
+  .u-flex__flexColumn[class^="fillAuto"] {
+    flex-basis: auto;
+  }
+}
+
+//Hacks for Edge 12+
+@include media-breakpoint-up(lg) {
+  @supports (-ms-ime-align: auto) {
+    .o-slider.-base,
+    .o-slider.-allSlider {
+      .m-cards__item {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+    }
+    .m-videoComponent.-gallery.-fullContainer {
+      margin-left: calc(-50vw + 8.5px) !important;
+    }
+  }
+}

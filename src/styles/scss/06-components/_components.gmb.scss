@@ -1,0 +1,78 @@
+/* ==========================================================================
+   #GOOGLE MY BUSINESS-COMPONENTS
+   ========================================================================== */
+
+.m-googleMyBusiness {
+    .m-avatar__image {
+        height: $spacing-lg;
+        width: $spacing-lg;
+    }
+    @include media-breakpoint-down(lg) {
+        background-color: $white;
+        height: 100%;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: map-get($map-z-index, modal);
+        overflow: scroll;
+    }
+    position: relative;
+    &__imageTitle {
+        border-style: solid;
+        border-width: 2px;
+        display: inline-flex;
+        height: $spacing-unit*7;
+        overflow: hidden;
+        width: $spacing-unit*7;
+    }
+    .m-avatar__imageContainer, .m-avatar__image {
+        height: $spacing-lg;
+        width: $spacing-lg;
+    }
+    .m-list.-iconList {
+        .m-list__item {
+            border-width: 0;
+            margin-bottom: $spacing-unit;
+            padding-bottom: $spacing-sides;
+            &:focus {
+                box-shadow: none;
+            }
+            .m-iconInsight__container  {
+                border-color: $tabs;
+                border-style: solid;
+                border-width: 0 0 1px 0;
+            }
+            &:last-of-type {
+                .m-iconInsight__container {
+                    border: none;
+                }
+            }
+        }      
+    }
+    &__sinceReview{
+        color: $gray;
+        font-size: 1.4rem;
+    }
+    &__newReview {
+        color: $black;
+        font-size: 1rem;
+        font-weight: 700;
+        margin: 0 $spacing-unit;
+        padding: $spacing-unit/2 $spacing-unit;
+    }
+}
+.fancybox-container {
+    .m-avatar__image {
+        height: $spacing-lg;
+        width: $spacing-lg;
+    }
+    .m-list__item {
+        border-width: 0;
+        margin-bottom: $spacing-unit;
+        padding-bottom: $spacing-sides;
+        &:focus {
+            box-shadow: none;
+        }
+    }
+}

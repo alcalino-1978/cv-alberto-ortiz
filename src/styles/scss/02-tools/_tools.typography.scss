@@ -1,0 +1,19 @@
+@mixin font-face($family, $ruta-fonts, $font, $font-weight, $font-style) {
+  @font-face {
+    font-family: "#{$family}";
+    src: url("#{$ruta-fonts}#{$font}.woff2") format("woff2"), url("#{$ruta-fonts}#{$font}.woff") format("woff"),
+      url("#{$ruta-fonts}#{$font}.ttf") format("truetype");
+    font-weight: $font-weight;
+    font-style: $font-style;
+    font-display: swap;
+  }
+}
+@mixin font-face-woff($family, $ruta-fonts, $font, $font-weight, $font-style) {
+  @font-face {
+    font-family: "#{$family}";
+    src:  url("#{$ruta-fonts}#{$font}.woff") format("woff");
+    font-weight: $font-weight;
+    font-style: $font-style;
+    font-display: swap;
+  }
+}

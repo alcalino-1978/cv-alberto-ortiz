@@ -1,0 +1,135 @@
+/* ==========================================================================
+   #TABS-COMPONENT
+   ========================================================================== */
+
+.m-navTabs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: left;
+    @include media-breakpoint-up(lg) {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    &__tab {
+        list-style-type: none;
+        @include media-breakpoint-up(lg){
+            display: flex;
+            text-align: center;
+            margin-right: -0.1rem;
+            position: relative;
+            &.-isActive {
+                .m-navTabs__linkTab {
+                    background-color: $white;
+                        cursor: text;
+                        font-weight: bold;
+                        border-bottom: 1px solid $white;
+                    }
+                }
+            }
+    }
+    &__linkTab {
+        display: flex;
+        width: 100%;
+        @include media-breakpoint-up(lg) {
+            padding: $spacing-sides;
+            height: calc(100% + 0.1rem);
+            margin-bottom: -0.1rem;
+            margin-left: $spacing-unit;
+            margin-right: $spacing-unit;
+            border: 1px solid $tabs;
+            border-bottom: none;
+            background-color: $background-240;
+            cursor: pointer;
+            align-items: center;
+            color: $color-body;
+            @include poly-fluid-sizing('font-size', 'another', null, null, $spacing-sides, 2rem); // 6.4rem 13.6rem
+            &:hover {
+                background-color: $white;
+            }
+            .a-trigger {
+                display: none;
+            }
+        }
+    }
+    &__iconTab {
+        font-size: 2em;
+    }
+    &__content {
+        border-top: 1px solid $tabs;
+        width: 100%;
+        order: 0;
+        flex-direction: column;
+        // @include poly-fluid-sizing('padding-top', 'another', null, null, $spacing-unit, $spacing-sides); // 6.4rem 13.6rem
+        // @include poly-fluid-sizing('padding-bottom', 'another', null, null, $spacing-unit, $spacing-sides); // 6.4rem 13.6rem
+        &.-isOpen {
+            order: 999;
+        }        
+    }
+    .m-navTabs__content.m-cards__mainContent[class^="-isClose"] {
+        display: none;
+    }
+    // styles version fullWidth
+    @include variant('.-fullWidth') {
+        justify-content: space-between;
+        &__tab {
+            flex: 1;
+        }
+        &__linkTab {
+            @include media-breakpoint-up(lg) {
+                text-align: center;
+                justify-content: center;
+                padding: $spacing-sides $spacing-unit/4;
+                flex: 1 1 auto;
+            }
+        }
+    }
+    // styles version lite
+    &.-lite {
+        width: auto;
+        border: none;
+    }
+    @include variant('.-lite') {
+        &__linkTab {
+            padding: $spacing-unit;
+            border: none;
+            background-color: transparent;
+            &.-isActive {
+                background-color: $white;
+            }
+        }
+    }
+    &.-typeSecondary {
+        width: 100%;
+        .m-navTabs__tab {
+            .m-navTabs__linkTab {
+                background-color: $white;
+                display: flex;
+                font-weight: normal;
+                font-size: $spacing-sides;
+                justify-content: center;
+                margin: 0;
+                padding: 0 0 12px;
+                border-bottom: 2px solid $background-240;
+            }
+            &.-isActive {
+                .m-navTabs__linkTab {
+                    border-bottom: 2px solid $primary-color;
+                    color: $primary-color;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+    &.-onPrevious {
+        @include media-breakpoint-down(lg) {
+            margin-top: $spacing-sides;
+        }
+    }
+}
+.o-accordion__item + .m-navTabs__content.-isOpen{
+    order: initial;
+    @include media-breakpoint-up(lg) {
+            order: 999;
+    }
+}

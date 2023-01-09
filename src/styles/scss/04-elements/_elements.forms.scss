@@ -1,0 +1,204 @@
+/* ==========================================================================
+   #UNCLASSED FORMS ELEMENTS
+   ========================================================================== */
+
+button {
+  border: none;
+  background: none;
+  font-family: $font-family-body;
+  cursor: pointer;
+  &:focus {
+    outline: 0;
+  }
+}
+
+select,
+option,
+textarea,
+%input {
+  -webkit-appearance: none;
+  width: 100%;
+  min-height: 4.8rem;
+  padding-left: 1.7rem;
+  background-color: $background-input;
+  border: none;
+  border: 1px solid $border-input;
+  font-size: $base-font-size;
+  font-family: $font-family-body;
+  font-weight: 300;
+  color: $text-input;
+  text-align: left;
+  z-index: 2;
+  display: block;
+  border-radius: $border-radius;
+  font-family: Bupa, Arial, Helvetica, Sans-serif;
+  &:focus {
+    background-color: $white;
+    border-color: $primary-color;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  }
+  &.-error {
+    color: $error;
+    border-color: $error;
+    background-color: $bg-error;
+    &::-webkit-input-placeholder {
+      color: $error;
+    }
+    &::-moz-placeholder {
+      color: $error;
+    }
+    &:-ms-input-placeholder {
+      color: $error;
+    }
+    &::placeholder {
+      color: $error;
+    }
+  }
+  &::placeholder {
+    color: $text-input;
+  }
+}
+
+input {
+  &[type="text"],
+  &[type="date"],
+  &[type="search"],
+  &[type="password"],
+  &[type="email"],
+  &[type="file"],
+  &[type="number"],
+  &[type="tel"] {
+    @extend %input;
+  }
+}
+
+label, %label {
+  font-size: $base-font-size;
+  color: $black;
+  display: inline-block;
+  padding-bottom: $spacing-unit;
+  &.-error {
+    color: $error;
+    border-color: $error;
+    background-color: transparent;
+    * {
+       color: $error;
+    }
+  }
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  display: none;
+  + label {
+    line-height: $base-line-height;
+    vertical-align: middle;
+    padding: 0;
+    display: flex;
+    align-items: flex-start;
+    > span {
+      display: inline-block;
+    }
+    small {
+      display: block;
+    }
+    &::before {
+      align-items: center;
+      margin-right: 1.5rem;
+      background-color: $white;
+      border: 1px solid $border-check-radio;
+      border-radius: 4px;
+      content: "";
+      display: inline-flex;
+      height: 2.4rem;
+      justify-content: center;
+      left: 0;
+      width: 2.4rem;
+      min-width: 2.4rem;
+    }
+  }
+  &:checked + label::before {
+    background-color: map-deep-get($map-colours, primary, tint-75);
+    border: medium none;
+    color: $white;
+    content: "\ea95";
+    // font-family: $font-family-bupaicons;
+    font-size: 1.8rem;
+    text-shadow: 1px 2px 3px rgba(51, 51, 51, 0.5);
+  }
+}
+input[type="radio"] {
+  + label {
+    align-items: flex-start;
+    display: flex;
+    padding: 0;
+    position: relative;
+    &::before {
+      border-radius: 100%;
+      // margin-bottom: 1rem;
+    }
+  }
+  &:checked + label {
+    &::before {
+      color: $white;
+      content: " ";
+      font-size: 1.8rem;
+    }
+    &::after {
+      background-color: $white;
+      border-radius: 50%;
+      box-shadow: 1px 2px 3px rgba(51, 51, 51, 0.5);
+      content: " ";
+      height: $spacing-unit;
+      left: $spacing-unit;
+      position: absolute;
+      top: $spacing-unit;
+      width: $spacing-unit;
+    }
+  }
+}
+input[type="checkbox"].-error + label::before, input[type="radio"].-error + label::before {
+  border-color: $error;
+}
+
+select {
+  // background-image: url(/img/site_general/diseno/icon-arrow-down.svg);
+  background-size: $spacing-sides;
+  background-repeat: no-repeat;
+  background-position: 95% 50%;
+  &.-isUnfolded {
+    // background-image: url(/img/site_general/diseno/icon-arrow-up.svg);
+  }
+  option[hidden] {
+    display: none;
+  }
+}
+
+@-moz-document url-prefix() {
+  select {
+      padding-top: 14px;
+ }
+}
+
+input[type="search"] {
+  padding-right: $spacing-unit;
+}
+
+textarea {
+  padding: $spacing-sides;
+}
+
+// Custom with icon calendar
+input[type="date"] {
+  // background-image: url(/img/site_general/diseno/icon-calendar-linear.svg);
+  background-size: $spacing-md;
+  background-repeat: no-repeat;
+  background-position: right $spacing-sides center;
+  &::-webkit-inner-spin-button {
+    display: none;
+  }
+  &::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    width: $spacing-xl;
+  }  
+}

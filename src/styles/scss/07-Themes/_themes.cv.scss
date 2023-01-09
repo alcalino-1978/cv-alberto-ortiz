@@ -1,0 +1,20 @@
+/* ==========================================================================
+   #CV-THEME
+   ========================================================================== */
+
+p {
+    text-align: justify;
+}
+.container > .row {
+    @include media-breakpoint-up(lg) {
+        width: 76rem;
+    }
+}
+
+[class^="title"] {
+    text-transform: uppercase;
+}
+
+.sub {
+    font-style: italic;
+}

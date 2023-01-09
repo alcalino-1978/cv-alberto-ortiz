@@ -1,0 +1,20 @@
+/* ==========================================================================
+   #HIDDEN-UTILITIES
+   ========================================================================== */
+
+
+ .u-hiddenVisually {
+  @include hidden-visually;
+}
+.u-visibility{
+  &Hidden {
+    visibility: hidden !important;
+  }
+  &Visible {
+    visibility: hidden !important;
+  }
+}
+
+
+@include constructor-hide-show('hide'); // .u-hideXs{}
+@include constructor-hide-show('show'); // .u-showXs{}

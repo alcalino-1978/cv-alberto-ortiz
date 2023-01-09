@@ -1,0 +1,105 @@
+// Truncate
+@mixin text-truncate {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+// Usage
+// @include text-truncate();
+// Mixin constructor text-align
+@mixin text-utilities($type, $thisprefix) {
+    &#{$thisprefix} {
+        @if $type=="align" {
+            &__align-left {
+                text-align: left !important;
+            }
+            &__align-center {
+                text-align: center !important;
+            }
+            &__align-right {
+                text-align: right !important;
+            }
+            &__align-justify {
+                text-align: justify !important;
+            }
+        }
+        @else if $type=="transform" {
+            &__lower-case {
+                text-transform: lowercase !important;
+            }
+            &__upper-case {
+                text-transform: uppercase !important;
+            }
+            &__capitalize {
+                text-transform: capitalize !important;
+            }
+        }
+        @else if $type=="decoration" {
+            &__decoration-none {
+                text-decoration: none !important;
+            }
+            &__decoration-underline {
+                text-decoration: underline !important;
+            }
+        }
+        @else if $type=="weight" {
+            &__plus,
+            &__bold {
+                font-weight: 700 !important;
+            }
+            &__bolder,
+            &__extra-plus {
+                font-weight: 900 !important;
+            }
+            &__normal {
+                font-weight: normal !important;
+            }
+            &__lighter {
+                font-weight: 300 !important;
+            }
+        }
+        @else if $type=="style" {
+            &__italic {
+                font-style: italic !important;
+            }
+        }
+        @else if $type=="white-space" {
+            &__no-wrap {
+                white-space: nowrap !important;
+            }
+        }
+    }
+}
+
+@mixin constructor-text-utilities($type) {
+    .text {
+        @include text-utilities($type, '');
+        @for $i from 1 through length($breakpoint-up-prefixes) {
+            $thisprefix: nth($breakpoint-up-prefixes, $i);
+            @if $thisprefix=="xs" {
+                @include text-utilities($type, $thisprefix);
+            }
+            @else if $thisprefix=="sm" {
+                @include media-breakpoint-up(sm) {
+                    @include text-utilities($type, $thisprefix);
+                }
+            }
+            @else if $thisprefix=="md" {
+                @include media-breakpoint-up(md) {
+                    @include text-utilities($type, $thisprefix);
+                }
+            }
+            @else if $thisprefix=="lg" {
+                @include media-breakpoint-up(lg) {
+                    @include text-utilities($type, $thisprefix);
+                }
+            }
+            @else if $thisprefix=="xl" {
+                @include media-breakpoint-up(xl) {
+                    @include text-utilities($type, $thisprefix);
+                }
+            }
+        }
+    }
+}

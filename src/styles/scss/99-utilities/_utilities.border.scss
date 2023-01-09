@@ -1,0 +1,145 @@
+/* ==========================================================================
+   #BORDER-UTILITIES
+   ========================================================================== */
+
+.u-border {
+    border: 1px solid $primary-color !important;
+}
+
+.-border {
+    @each $name,
+    $hex in $map-colours-borders {
+        &#{$name} {
+            border-color: $hex !important;
+        }
+    }
+}
+
+.-borderTop {
+    border-width: 1px 0 0 0 !important;
+}
+
+.-borderRight {
+    border-width: 0 1px 0 0 !important;
+}
+
+.-borderBottom {
+    border-width: 0 0 1px 0 !important;
+}
+
+.-borderLeft {
+    border-width: 0 0 0 1px !important;
+}
+
+.-rounded {
+    border-radius: $border-radius !important;
+    &.-onlyRadiusMobile{
+        @include media-breakpoint-up(lg) {
+            border-radius: 0 !important;
+        }
+    }
+    &.-onlyRadiusDesktop{
+        @include media-breakpoint-down(lg) {
+            border-radius: 0 !important;
+        }
+    }
+}
+
+.-rounded2x {
+    border-radius: $border-radius*2 !important;
+    &.-onlyRadiusMobile{
+        @include media-breakpoint-up(lg) {
+            border-radius: 0 !important;
+        }
+    }
+    &.-onlyRadiusDesktop{
+        @include media-breakpoint-down(lg) {
+            border-radius: 0 !important;
+        }
+    }
+}
+
+.-rounded4x {
+    border-radius: $border-radius*4 !important;
+}
+
+.-rounded8x {
+    border-radius: $border-radius*8 !important;
+}
+
+.-circle {
+    border-radius: 50% !important;
+}
+
+.-roundedTop {
+    border-top-left-radius: $border-radius !important;
+    border-top-right-radius: $border-radius !important;
+}
+
+.-roundedRight {
+    border-top-right-radius: $border-radius !important;
+    border-bottom-right-radius: $border-radius !important;
+}
+
+.-roundedBottom {
+    border-bottom-left-radius: $border-radius !important;
+    border-bottom-right-radius: $border-radius !important;
+}
+
+.-roundedLeft {
+    border-top-left-radius: $border-radius !important;
+    border-bottom-left-radius: $border-radius !important;
+}
+
+.-noRounded {
+    border-radius: 0 !important;
+}
+.-noRoundedTop {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
+.-noRoundedRight {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.-noRoundedBottom {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.-noRoundedLeft {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.-noBorder {
+    border: none !important;
+    &Mobile{
+        @include media-breakpoint-down(lg) {
+            border: none !important;            
+        }
+    }
+    &Desktop{
+        @include media-breakpoint-up(lg) {
+            border: none !important;
+        }
+    }
+}
+
+.-noBorder__top {
+    border-top: none !important;
+}
+
+.-noBorder__right {
+    border-right: none !important;
+}
+
+.-noBorder__bottom {
+    border-bottom: none !important;
+}
+
+.-noBorder__left {
+    border-left: none !important;
+}

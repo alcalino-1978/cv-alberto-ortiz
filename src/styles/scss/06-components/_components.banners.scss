@@ -1,0 +1,103 @@
+/* ==========================================================================
+   #BANNERS-COMPONENTS
+   ========================================================================== */
+
+.m-banner {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    &.-hero {
+        height: auto;
+        .a-anteTitle {
+            @include media-breakpoint-up(lg) {
+                position: absolute;
+                top: $spacing-lg;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            &.-alignLeft {
+                transform: translateX(0);
+                position: static;
+            }
+        }
+    }
+    &__media {        
+        @extend %a-imageContainer;
+        &:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+        &.-gradient{
+            &:before {
+                background: linear-gradient( rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+            }
+        }
+        &.-gradientFull{
+            &:before {
+                background: rgba(0, 0, 0, 0.45);
+            }
+        }
+        &.-gradientFullMobile{
+            @include media-breakpoint-down(lg) {
+                &:before {
+                    background: rgba(0, 0, 0, 0.45);
+                }
+            }
+        }
+        &.-gradientFullXs{
+            @include media-breakpoint-down(sm) {
+                &:before {
+                    background: rgba(0, 0, 0, 0.45);
+                }
+            }
+        }
+        &.-gradientFullNoMobile{
+            @include media-breakpoint-up(sm) {
+                &:before {
+                    background: rgba(0, 0, 0, 0.45);
+                }
+            }
+        }
+        &.-gradientFullDesktop{
+            @include media-breakpoint-up(lg) {
+                &:before {
+                    background: rgba(0, 0, 0, 0.45);
+                }
+            }
+        }
+        &[class^="staticMobile"]{
+            @include media-breakpoint-down(lg) {
+                &:before {
+                    display: none;
+                }
+            }
+        }
+        @include media-breakpoint-down(lg) {
+            &.-gradientMobile{
+                &:before {
+                    background: linear-gradient( rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+                }
+            }
+        }
+        @include media-breakpoint-up(lg) {
+            &.-gradientDesktop{
+                &:before {
+                    background: linear-gradient( rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+                }
+            }
+        }
+    }
+    .a-logo {
+        @include media-breakpoint-up(lg) {
+            width: $spacing-unit*10;
+            height: 10.7rem;
+            margin-right: $spacing-sides;
+            display: block;
+        }
+    }
+}

@@ -1,0 +1,49 @@
+/* ==========================================================================
+   #MODAL-COMPONENT
+   ========================================================================== */
+
+   
+.o-modal {
+  //@include basic-transition(transform, $duration: 0.5s);
+
+  position: fixed;
+  z-index: map-get($map: $map-z-index, $key: modal);
+  left: 50%;
+  top: 50%;
+  display: none;
+  width: 600px;
+  max-width: 90%;
+  max-width: calc(100% - #{$spacing-sides});
+  max-height: 90%;
+  max-height: calc(100% - #{$spacing-sides});
+  overflow-x: hidden;
+  overflow-y: auto;
+  transform: translate(-50%, -200vh);
+  transform: translate(-50%, calc(-100vh - 105%));
+  will-change: transform;
+  pointer-events: none;
+  -webkit-overflow-scrolling: touch;
+
+  @supports (pointer-events: auto) {
+    display: block;
+    pointer-events: none;
+  }
+
+  @include media-breakpoint-up(md) {
+    max-width: calc(100% - #{$spacing-sides * 2});
+    max-height: calc(100% - #{$spacing-sides * 2});
+  }
+
+  @include media-breakpoint-up(lg) {
+    max-width: calc(100% - #{$spacing-sides * 4});
+    max-height: calc(100% - #{$spacing-sides * 4});
+  }
+
+  &.isActive {
+    transform: translate(-50%, -50%);
+    pointer-events: auto;
+  }
+}
+%overlay {
+    background-color: rgba(0,0,0, 0.6);
+}
