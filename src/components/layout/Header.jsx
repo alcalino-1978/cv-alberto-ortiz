@@ -1,5 +1,5 @@
 import React from 'react'
-import albertoFoto  from '../../assets/foto-alberto-ortiz-trevino.jpg'
+// import albertoFoto  from '../../assets/foto-alberto-ortiz-trevino.jpg'
 import styles from './Header.module.scss'
 
 const Header = ( { personalInfo }) => {
