@@ -12,8 +12,8 @@ const Education = ( { education }) => {
           {education.map((item) => {
               return (
                 <div className="experience-container__content margin-bottom__sm" key={JSON.stringify(item)}>
-                  <h3 class="title-xs">{item.nameEstudies}</h3>
-                  <span class="sub text-smaller">{item.place} | {item.start} - {item.end}</span>
+                  <h3 className="title-xs">{item.nameEstudies}</h3>
+                  <span className="sub text-smaller">{item.place} | {item.start} - {item.end}</span>
                 </div>
                 )
               })
