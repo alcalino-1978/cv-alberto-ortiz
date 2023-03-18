@@ -61,10 +61,22 @@ import axios from "axios";
 
 export async function CV() {
     try {
-      const response = await axios.get('https://127.0.0.1:8000/api/v1/cv');
+      const response = await axios.get('https://127.0.0.1:8000/api/v1/cv/2');
       // console.log(response.data);
       return response.data;
     } catch (error) {
       console.error(error);
     }
   }
+
+export async function updateEmail(email) {
+  try {
+    const response = await axios.post('https://127.0.0.1:8000/api/v1/cv/2/email',{
+      email
+    });
+    // console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}

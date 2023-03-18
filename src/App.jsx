@@ -17,7 +17,6 @@ import "./App.scss";
 
 function App() {
   const [data, setData] = useState([]);
-  const [numero, setNumero] = useState(0);
 
   // useEffect(() => {debugger; });
 
